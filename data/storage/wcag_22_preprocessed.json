@@ -15,7 +15,6 @@
       "adaptable",
       "distinguishable"
     ],
-    "content_hash": "0b8c41d4de8162dd34b2cc626c0c2b0601a293693668ff902bbf6d58ccbf15c5",
     "full_context": "WCAG 22 Principle 1: Information and user interface components must be presentable to users in ways they can perceive."
   },
   {
@@ -85,7 +84,7 @@
     },
     "compliance_level": "A",
     "testing_requirements": [
-      "Decoration, Formatting, Invisible If non-text content is pure decoration , is used only for visual formatting, or is not presented to users, then it is implemented in a way that it can be ignored by assistive technology ."
+      "all non-text content that is presented to the user has a text alternative that serves the equivalent purpose, except for the situations listed below. controls, input if non-text content is a control or accepts user input, then it has a name that describes its purpose. (refer to success criterion 4.1.2 for additional requirements for controls and content that accepts user input.) time-based media if non-text content is time-based media, then text alternatives at least provide descriptive identification of the non-text content. (refer to guideline 1.2 for additional requirements for media.) test if non-text content is a test or exercise that would be invalid if presented in text , then text alternatives at least provide descriptive identification of the non-text content. sensory if non-text content is primarily intended to create a specific sensory experience , then text alternatives at least provide descriptive identification of the non-text content. captcha if the purpose of non-text content is to confirm that content is being accessed by a person rather than a computer, then text alternatives that identify and describe the purpose of the non-text content are provided, and alternative forms of captcha using output modes for different types of sensory perception are provided to accommodate different disabilities. decoration, formatting, invisible if non-text content is pure decoration , is used only for visual formatting, or is not presented to users, then it is implemented in a way that it can be ignored by assistive technology ."
     ],
     "full_context": "WCAG 22 Success Criterion 1.1.1 (A): All non-text content that is presented to the user has a text alternative that serves the equivalent purpose, except for the situations listed below.",
     "related_requirements": [
@@ -197,7 +196,11 @@
     "techniques": {
       "sufficient": [
         "G93: Providing open (always visible) captions",
-        "G87: Providing closed captions"
+        "G87: Providing closed captions",
+        "SM11: Providing captions through synchronized text streams in SMIL 1.0",
+        "SM12: Providing captions through synchronized text streams in SMIL 2.0",
+        "H95: Using the track element to provide captions",
+        "Using any readily available media format that has a video player that supports closed captioning"
       ],
       "failure": [
         "F8: Failure of Success Criterion 1.2.2 due to captions omitting some dialogue or important sound effects",
@@ -244,10 +247,17 @@
     "techniques": {
       "sufficient": [
         "G69: Providing an alternative for time based media",
-        "  H53: Using the body of the object element",
+        "G58: Placing a link to the alternative for time-based media immediately next to the non-text content",
+        "Linking to the alternative for time-based media",
+        "H53: Using the body of the object element",
         "G78: Providing a second, user-selectable, audio track that includes audio descriptions",
         "G173: Providing a version of a movie with audio descriptions",
+        "SM6: Providing audio description in SMIL 1.0",
+        "SM7: Providing audio description in SMIL 2.0",
+        "G226: Providing audio descriptions by incorporating narration in the soundtrack",
         "G8: Providing a movie with extended audio descriptions",
+        "SM1: Adding extended audio description in SMIL 1.0",
+        "SM2: Adding extended audio description in SMIL 2.0",
         "G203: Using a static text alternative to describe a talking head video"
       ],
       "advisory": [
@@ -295,10 +305,13 @@
     ],
     "techniques": {
       "sufficient": [
-        "  G9: Creating captions for live synchronized media",
-        "  G93: Providing open (always visible) captions",
-        "  G9: Creating captions for live synchronized media",
-        "  G87: Providing closed captions"
+        "G9: Creating captions for live synchronized media",
+        "G93: Providing open (always visible) captions",
+        "SM11: Providing captions through synchronized text streams in SMIL 1.0",
+        "SM12: Providing captions through synchronized text streams in SMIL 2.0",
+        "Using any readily available media format that has a video player that supports closed captioning",
+        "G9: Creating captions for live synchronized media",
+        "G87: Providing closed captions"
       ],
       "sufficientNote": [
         "Captions may be generated using real-time text translation service."
@@ -343,7 +356,12 @@
       "sufficient": [
         "G78: Providing a second, user-selectable, audio track that includes audio descriptions",
         "G173: Providing a version of a movie with audio descriptions",
+        "SM6: Providing audio description in SMIL 1.0",
+        "SM7: Providing audio description in SMIL 2.0",
+        "G226: Providing audio descriptions by incorporating narration in the soundtrack",
         "G8: Providing a movie with extended audio descriptions",
+        "SM1: Adding extended audio description in SMIL 1.0",
+        "SM2: Adding extended audio description in SMIL 2.0",
         "G203: Using a static text alternative to describe a talking head video"
       ],
       "advisory": [
@@ -395,7 +413,9 @@
     "techniques": {
       "sufficient": [
         "G54: Including a sign language interpreter in the video stream",
-        "G81: Providing a synchronized video of the sign language interpreter that can be displayed in a different viewport or overlaid on the image by the player"
+        "G81: Providing a synchronized video of the sign language interpreter that can be displayed in a different viewport or overlaid on the image by the player",
+        "SM13: Providing sign language interpretation through synchronized video streams in SMIL 1.0",
+        "SM14: Providing sign language interpretation through synchronized video streams in SMIL 2.0"
       ]
     },
     "compliance_level": "AAA",
@@ -436,7 +456,9 @@
     ],
     "techniques": {
       "sufficient": [
-        "G8: Providing a movie with extended audio descriptions"
+        "G8: Providing a movie with extended audio descriptions",
+        "SM1: Adding extended audio description in SMIL 1.0",
+        "SM2: Adding extended audio description in SMIL 2.0"
       ],
       "advisory": [
         "H96: Using the track element to provide audio descriptions"
@@ -602,7 +624,7 @@
     },
     "compliance_level": "A",
     "testing_requirements": [
-      "Information, structure , and relationships conveyed through presentation can be programmatically determined or are available in text."
+      "information, structure , and relationships conveyed through presentation can be programmatically determined or are available in text."
     ],
     "full_context": "WCAG 22 Success Criterion 1.3.1 (A): Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text.",
     "related_requirements": [
@@ -635,6 +657,10 @@
       "sufficient": [
         "G57: Ordering the content in a meaningful sequence",
         "G57: Ordering the content in a meaningful sequence",
+        "H34: Using a Unicode right-to-left mark (RLM) or left-to-right mark (LRM) to mix text direction inline",
+        "H56: Using the dir attribute on an inline element to resolve problems with nested directional runs",
+        "C6: Positioning content based on structural markup",
+        "C8: Using CSS letter-spacing to control spacing within a word",
         "C27: Making the DOM order match the visual order",
         "PDF3: Ensuring correct tab and reading order in PDF documents"
       ],
@@ -648,7 +674,7 @@
     },
     "compliance_level": "A",
     "testing_requirements": [
-      "When the sequence in which content is presented affects its meaning, a correct reading sequence can be programmatically determined ."
+      "when the sequence in which content is presented affects its meaning, a correct reading sequence can be programmatically determined ."
     ],
     "full_context": "WCAG 22 Success Criterion 1.3.2 (A): When the sequence in which content is presented affects its meaning, a correct reading sequence can be programmatically determined.",
     "related_requirements": [
@@ -772,7 +798,7 @@
     },
     "compliance_level": "AA",
     "testing_requirements": [
-      "The purpose of each input field collecting information about the user can be programmatically determined when: The input field serves a purpose identified in the Input Purposes for user interface components section ; and The content is implemented using technologies with support for identifying the expected meaning for form input data."
+      "the purpose of each input field collecting information about the user can be programmatically determined when: the input field serves a purpose identified in the input purposes for user interface components section ; and the content is implemented using technologies with support for identifying the expected meaning for form input data."
     ],
     "full_context": "WCAG 22 Success Criterion 1.3.5 (AA): The purpose of each input field collecting information about the user can be programmatically determined when:",
     "related_requirements": [
@@ -818,7 +844,7 @@
     },
     "compliance_level": "AAA",
     "testing_requirements": [
-      "In content implemented using markup languages, the purpose of user interface components , icons, and regions can be programmatically determined ."
+      "in content implemented using markup languages, the purpose of user interface components , icons, and regions can be programmatically determined ."
     ],
     "full_context": "WCAG 22 Success Criterion 1.3.6 (AAA): In content implemented using markup languages, the purpose of user interface components, icons, and regions can be programmatically determined.",
     "related_requirements": [
@@ -1034,6 +1060,16 @@
     "techniques": {
       "sufficient": [
         "G142: Using a technology that has commonly-available user agents that support zoom",
+        "C28: Specifying the size of text containers using em units",
+        "Techniques for relative measurements",
+        "C12: Using percent for font sizes",
+        "C13: Using named font sizes",
+        "C14: Using em units for font sizes",
+        "Techniques for text container resizing",
+        "SCR34: Calculating size and position in a way that scales with text size",
+        "G146: Using liquid layout",
+        "Ensuring that text containers resize when the text resizes",
+        "using measurements that are relative to other measurements in the content",
         "G178: Providing controls on the web page that allow users to incrementally change the size of all text on the page up to 200 percent",
         "G179: Ensuring that there is no loss of content or functionality when the text resizes and text containers do not change their width"
       ],
@@ -1050,7 +1086,7 @@
     },
     "compliance_level": "AA",
     "testing_requirements": [
-      "Except for captions and images of text , text can be resized without assistive technology up to 200 percent without loss of content or functionality."
+      "except for captions and images of text , text can be resized without assistive technology up to 200 percent without loss of content or functionality."
     ],
     "full_context": "WCAG 22 Success Criterion 1.4.4 (AA): Except for captions and images of text, text can be resized without assistive technology up to 200 percent without loss of content or functionality.",
     "related_requirements": [
@@ -1100,7 +1136,7 @@
     },
     "compliance_level": "AA",
     "testing_requirements": [
-      "If the technologies being used can achieve the visual presentation, text is used to convey information rather than images of text except for the following: Customizable The image of text can be visually customized to the user's requirements; Essential A particular presentation of text is essential to the information being conveyed."
+      "if the technologies being used can achieve the visual presentation, text is used to convey information rather than images of text except for the following: customizable the image of text can be visually customized to the user's requirements; essential a particular presentation of text is essential to the information being conveyed. note logotypes (text that is part of a logo or brand name) are considered essential."
     ],
     "full_context": "WCAG 22 Success Criterion 1.4.5 (AA): If the technologies being used can achieve the visual presentation, text is used to convey information rather than images of text except for the following:",
     "related_requirements": [
@@ -1182,7 +1218,7 @@
     },
     "compliance_level": "AAA",
     "testing_requirements": [
-      "Turn Off The background sounds can be turned off. 20 dB The background sounds are at least 20 decibels lower than the foreground speech content, with the exception of occasional sounds that last for only one or two seconds."
+      "for prerecorded audio-only content that (1) contains primarily speech in the foreground, (2) is not an audio captcha or audio logo, and (3) is not vocalization intended to be primarily musical expression such as singing or rapping, at least one of the following is true: no background the audio does not contain background sounds. turn off the background sounds can be turned off. 20 db the background sounds are at least 20 decibels lower than the foreground speech content, with the exception of occasional sounds that last for only one or two seconds. note per the definition of \"decibel,\" background sound that meets this requirement will be approximately four times quieter than the foreground speech content."
     ],
     "full_context": "WCAG 22 Success Criterion 1.4.7 (AAA): For prerecorded audio-only content that (1) contains primarily speech in the foreground, (2) is not an audio CAPTCHA or audio logo, and (3) is not vocalization intended to be primarily musical expression such as singing or rapping, at least one of the following is true:",
     "related_requirements": [
@@ -1230,11 +1266,8 @@
     },
     "compliance_level": "AAA",
     "testing_requirements": [
-      "Note 1 Content is not required to use these values.",
-      "Content is not required to provide the mechanism.",
-      "For the visual presentation of blocks of text , a mechanism is available to achieve the following: Foreground and background colors can be selected by the user.",
-      "Text can be resized without assistive technology up to 200 percent in a way that does not require the user to scroll horizontally to read a line of text on a full-screen window .",
-      "The mechanism can be provided by the browser or other user agent."
+      "for the visual presentation of blocks of text , a mechanism is available to achieve the following: foreground and background colors can be selected by the user. width is no more than 80 characters or glyphs (40 if cjk). text is not justified (aligned to both the left and the right margins). line spacing (leading) is at least space-and-a-half within paragraphs, and paragraph spacing is at least 1.5 times larger than the line spacing. text can be resized without assistive technology up to 200 percent in a way that does not require the user to scroll horizontally to read a line of text on a full-screen window . note 1 content is not required to use these values. the requirement is that a mechanism is available for users to change these presentation aspects. the mechanism can be provided by the browser or other user agent. content is not required to provide the mechanism. note 2 writing systems for some languages use different presentation aspects to improve readability and legibility. if a presentation aspect in this success criterion is not used in a writing system, content in that writing system does not need to use that presentation setting and can conform without it. authors are encouraged to follow guidance for improving readability and legibility of text in their writing system.",
+      "for the visual presentation of blocks of text , a mechanism is available to achieve the following: foreground and background colors can be selected by the user. width is no more than 80 characters or glyphs (40 if cjk). text is not justified (aligned to both the left and the right margins). line spacing (leading) is at least space-and-a-half within paragraphs, and paragraph spacing is at least 1.5 times larger than the line spacing. text can be resized without assistive technology up to 200 percent in a way that does not require the user to scroll horizontally to read a line of text on a full-screen window . note 1 content is not required to use these values. the requirement is that a mechanism is available for users to change these presentation aspects. the mechanism can be provided by the browser or other user agent. content is not required to provide the mechanism. note 2 writing systems for some languages use different presentation aspects to improve readability and legibility. if a presentation aspect in this success criterion is not used in a writing system, content in that writing system does not need to use that presentation setting and can conform without it. authors are encouraged to follow guidance for improving readability and legibility of text in their writing system."
     ],
     "full_context": "WCAG 22 Success Criterion 1.4.8 (AAA): For the visual presentation of blocks of text, a mechanism is available to achieve the following:",
     "related_requirements": [
@@ -1358,8 +1391,8 @@
     },
     "compliance_level": "AA",
     "testing_requirements": [
-      "Note 2 Examples of content which requires two-dimensional layout are images required for understanding (such as maps and diagrams), video, games, presentations, data tables (not individual cells), and interfaces where it is necessary to keep toolbars in view while manipulating content.",
-      "Content can be presented without loss of information or functionality, and without requiring scrolling in two dimensions for: Vertical scrolling content at a width equivalent to 320 CSS pixels ; Horizontal scrolling content at a height equivalent to 256 CSS pixels ."
+      "content can be presented without loss of information or functionality, and without requiring scrolling in two dimensions for: vertical scrolling content at a width equivalent to 320 css pixels ; horizontal scrolling content at a height equivalent to 256 css pixels . except for parts of the content which require two-dimensional layout for usage or meaning. note 1 320 css pixels is equivalent to a starting viewport width of 1280 css pixels wide at 400% zoom. for web content which is designed to scroll horizontally (e.g., with vertical text), 256 css pixels is equivalent to a starting viewport height of 1024 css pixels at 400% zoom. note 2 examples of content which requires two-dimensional layout are images required for understanding (such as maps and diagrams), video, games, presentations, data tables (not individual cells), and interfaces where it is necessary to keep toolbars in view while manipulating content. it is acceptable to provide two-dimensional scrolling for such parts of the content.",
+      "content can be presented without loss of information or functionality, and without requiring scrolling in two dimensions for: vertical scrolling content at a width equivalent to 320 css pixels ; horizontal scrolling content at a height equivalent to 256 css pixels . except for parts of the content which require two-dimensional layout for usage or meaning. note 1 320 css pixels is equivalent to a starting viewport width of 1280 css pixels wide at 400% zoom. for web content which is designed to scroll horizontally (e.g., with vertical text), 256 css pixels is equivalent to a starting viewport height of 1024 css pixels at 400% zoom. note 2 examples of content which requires two-dimensional layout are images required for understanding (such as maps and diagrams), video, games, presentations, data tables (not individual cells), and interfaces where it is necessary to keep toolbars in view while manipulating content. it is acceptable to provide two-dimensional scrolling for such parts of the content."
     ],
     "full_context": "WCAG 22 Success Criterion 1.4.10 (AA): Content can be presented without loss of information or functionality, and without requiring scrolling in two dimensions for:",
     "related_requirements": [
@@ -1402,7 +1435,7 @@
     },
     "compliance_level": "AA",
     "testing_requirements": [
-      "The visual presentation of the following have a contrast ratio of at least 3:1 against adjacent color(s): User Interface Components Visual information required to identify user interface components and states , except for inactive components or where the appearance of the component is determined by the user agent and not modified by the author; Graphical Objects Parts of graphics required to understand the content, except when a particular presentation of graphics is essential to the information being conveyed."
+      "the visual presentation of the following have a contrast ratio of at least 3:1 against adjacent color(s): user interface components visual information required to identify user interface components and states , except for inactive components or where the appearance of the component is determined by the user agent and not modified by the author; graphical objects parts of graphics required to understand the content, except when a particular presentation of graphics is essential to the information being conveyed."
     ],
     "full_context": "WCAG 22 Success Criterion 1.4.11 (AA): The visual presentation of the following have a contrast ratio of at least 3:1 against adjacent color(s):",
     "related_requirements": [
@@ -1455,7 +1488,7 @@
     },
     "compliance_level": "AA",
     "testing_requirements": [
-      "Note 1 Content is not required to use these text spacing values."
+      "in content implemented using markup languages that support the following text style properties , no loss of content or functionality occurs by setting all of the following and by changing no other style property: line height (line spacing) to at least 1.5 times the font size; spacing following paragraphs to at least 2 times the font size; letter spacing (tracking) to at least 0.12 times the font size; word spacing to at least 0.16 times the font size. exception: human languages and scripts that do not make use of one or more of these text style properties in written text can conform using only the properties that exist for that combination of language and script. note 1 content is not required to use these text spacing values. the requirement is to ensure that when a user overrides the authored text spacing, content or functionality is not lost. note 2 writing systems for some languages use different text spacing settings, such as paragraph start indent. authors are encouraged to follow locally available guidance for improving readability and legibility of text in their writing system."
     ],
     "full_context": "WCAG 22 Success Criterion 1.4.12 (AA): In content implemented using markup languages that support the following text style properties, no loss of content or functionality occurs by setting all of the following and by changing no other style property:",
     "related_requirements": [
@@ -1501,7 +1534,7 @@
     },
     "compliance_level": "AA",
     "testing_requirements": [
-      "Where receiving and then removing pointer hover or keyboard focus triggers additional content to become visible and then hidden, the following are true: Dismissible A mechanism is available to dismiss the additional content without moving pointer hover or keyboard focus, unless the additional content communicates an input error or does not obscure or replace other content; Hoverable If pointer hover can trigger the additional content, then the pointer can be moved over the additional content without the additional content disappearing; Persistent The additional content remains visible until the hover or focus trigger is removed, the user dismisses it, or its information is no longer valid."
+      "where receiving and then removing pointer hover or keyboard focus triggers additional content to become visible and then hidden, the following are true: dismissible a mechanism is available to dismiss the additional content without moving pointer hover or keyboard focus, unless the additional content communicates an input error or does not obscure or replace other content; hoverable if pointer hover can trigger the additional content, then the pointer can be moved over the additional content without the additional content disappearing; persistent the additional content remains visible until the hover or focus trigger is removed, the user dismisses it, or its information is no longer valid. exception: the visual presentation of the additional content is controlled by the user agent and is not modified by the author. note 1 examples of additional content controlled by the user agent include browser tooltips created through use of the html title attribute [ html ]. note 2 custom tooltips, sub-menus, and other nonmodal popups that display on hover and focus are examples of additional content covered by this criterion. note 3 this criterion applies to content that appears in addition to the triggering component itself. since hidden components that are made visible on keyboard focus (such as links used to skip to another part of a page) do not present additional content they are not covered by this criterion."
     ],
     "full_context": "WCAG 22 Success Criterion 1.4.13 (AA): Where receiving and then removing pointer hover or keyboard focus triggers additional content to become visible and then hidden, the following are true:",
     "related_requirements": []
@@ -1523,7 +1556,6 @@
       "navigable",
       "input-modalities"
     ],
-    "content_hash": "365073271319c5990f40add654792197e7b6c137e57d275b775377614a37a4cf",
     "full_context": "WCAG 22 Principle 2: User interface components and navigation must be operable."
   },
   {
@@ -1572,14 +1604,19 @@
     "techniques": {
       "sufficient": [
         "G202: Ensuring keyboard control for all functionality",
-        "  H91: Using HTML form controls and links",
-        "  PDF3: Ensuring correct tab and reading order in PDF documents",
-        "  PDF11: Providing links and link text using the Link annotation and the /Link structure element in PDF documents",
-        "  PDF23: Providing interactive form controls in PDF documents",
-        "G90: Providing keyboard-triggered event handlers"
+        "Ensuring keyboard control",
+        "H91: Using HTML form controls and links",
+        "PDF3: Ensuring correct tab and reading order in PDF documents",
+        "PDF11: Providing links and link text using the Link annotation and the /Link structure element in PDF documents",
+        "PDF23: Providing interactive form controls in PDF documents",
+        "G90: Providing keyboard-triggered event handlers",
+        "SCR20: Using both keyboard and other device-specific functions",
+        "SCR35: Making actions keyboard accessible by using the onclick event of anchors and buttons",
+        "SCR2: Using redundant keyboard and mouse event handlers"
       ],
       "advisory": [
-        "  SCR29: Adding keyboard-accessible actions to static HTML elements"
+        "Using WAI-ARIA role, state, and value attributes if repurposing static elements as interactive user interface components (future link)",
+        "SCR29: Adding keyboard-accessible actions to static HTML elements"
       ],
       "failure": [
         "F54: Failure of Success Criterion 2.1.1 due to using only pointing-device-specific event handlers (including gesture) for a function",
@@ -1589,7 +1626,7 @@
     },
     "compliance_level": "A",
     "testing_requirements": [
-      "Note 2 This does not forbid and should not discourage providing mouse input or other input methods in addition to keyboard operation."
+      "all functionality of the content is operable through a keyboard interface without requiring specific timings for individual keystrokes, except where the underlying function requires input that depends on the path of the user's movement and not just the endpoints. note 1 this exception relates to the underlying function, not the input technique. for example, if using handwriting to enter text, the input technique (handwriting) requires path-dependent input but the underlying function (text input) does not. note 2 this does not forbid and should not discourage providing mouse input or other input methods in addition to keyboard operation."
     ],
     "full_context": "WCAG 22 Success Criterion 2.1.1 (A): All functionality of the content is operable through a keyboard interface without requiring specific timings for individual keystrokes, except where the underlying function requires input that depends on the path of the user's movement and not just the endpoints.",
     "related_requirements": [
@@ -1652,7 +1689,7 @@
     },
     "compliance_level": "A",
     "testing_requirements": [
-      "If keyboard focus can be moved to a component of the page using a keyboard interface , then focus can be moved away from that component using only a keyboard interface, and, if it requires more than unmodified arrow or tab keys or other standard exit methods, the user is advised of the method for moving focus away."
+      "if keyboard focus can be moved to a component of the page using a keyboard interface , then focus can be moved away from that component using only a keyboard interface, and, if it requires more than unmodified arrow or tab keys or other standard exit methods, the user is advised of the method for moving focus away. note since any content that does not meet this success criterion can interfere with a user's ability to use the whole page, all content on the web page (whether it is used to meet other success criteria or not) must meet this success criterion. see conformance requirement 5: non-interference ."
     ],
     "full_context": "WCAG 22 Success Criterion 2.1.2 (A): If keyboard focus can be moved to a component of the page using a keyboard interface, then focus can be moved away from that component using only a keyboard interface, and, if it requires more than unmodified arrow or tab keys or other standard exit methods, the user is advised of the method for moving focus away.",
     "related_requirements": [
@@ -1833,8 +1870,8 @@
     },
     "compliance_level": "A",
     "testing_requirements": [
-      "For each time limit that is set by the content, at least one of the following is true: Turn off The user is allowed to turn off the time limit before encountering it; or Adjust The user is allowed to adjust the time limit before encountering it over a wide range that is at least ten times the length of the default setting; or Extend The user is warned before time expires and given at least 20 seconds to extend the time limit with a simple action (for example, \"press the space bar\"), and the user is allowed to extend the time limit at least ten times; or Real-time Exception The time limit is a required part of a real-time event (for example, an auction), and no alternative to the time limit is possible; or Essential Exception The time limit is essential and extending it would invalidate the activity; or 20 Hour Exception The time limit is longer than 20 hours.",
-      "This success criterion should be considered in conjunction with Success Criterion 3.2.1 , which puts limits on changes of content or context as a result of user action."
+      "for each time limit that is set by the content, at least one of the following is true: turn off the user is allowed to turn off the time limit before encountering it; or adjust the user is allowed to adjust the time limit before encountering it over a wide range that is at least ten times the length of the default setting; or extend the user is warned before time expires and given at least 20 seconds to extend the time limit with a simple action (for example, \"press the space bar\"), and the user is allowed to extend the time limit at least ten times; or real-time exception the time limit is a required part of a real-time event (for example, an auction), and no alternative to the time limit is possible; or essential exception the time limit is essential and extending it would invalidate the activity; or 20 hour exception the time limit is longer than 20 hours. note this success criterion helps ensure that users can complete tasks without unexpected changes in content or context that are a result of a time limit. this success criterion should be considered in conjunction with success criterion 3.2.1 , which puts limits on changes of content or context as a result of user action.",
+      "for each time limit that is set by the content, at least one of the following is true: turn off the user is allowed to turn off the time limit before encountering it; or adjust the user is allowed to adjust the time limit before encountering it over a wide range that is at least ten times the length of the default setting; or extend the user is warned before time expires and given at least 20 seconds to extend the time limit with a simple action (for example, \"press the space bar\"), and the user is allowed to extend the time limit at least ten times; or real-time exception the time limit is a required part of a real-time event (for example, an auction), and no alternative to the time limit is possible; or essential exception the time limit is essential and extending it would invalidate the activity; or 20 hour exception the time limit is longer than 20 hours. note this success criterion helps ensure that users can complete tasks without unexpected changes in content or context that are a result of a time limit. this success criterion should be considered in conjunction with success criterion 3.2.1 , which puts limits on changes of content or context as a result of user action."
     ],
     "full_context": "WCAG 22 Success Criterion 2.2.1 (A): For each time limit that is set by the content, at least one of the following is true:",
     "related_requirements": [
@@ -1888,9 +1925,9 @@
     },
     "compliance_level": "A",
     "testing_requirements": [
-      "Note 3 Content that is updated periodically by software or that is streamed to the user agent is not required to preserve or present information that is generated or received between the initiation of the pause and resuming presentation, as this may not be technically possible, and in many situations could be misleading to do so.",
-      "Note 4 An animation that occurs as part of a preload phase or similar situation can be considered essential if interaction cannot occur during that phase for all users and if not indicating progress could confuse users or cause them to think that content was frozen or broken.",
-      "Note 4 An animation that occurs as part of a preload phase or similar situation can be considered essential if interaction cannot occur during that phase for all users and if not indicating progress could confuse users or cause them to think that content was frozen or broken."
+      "for moving, blinking , scrolling, or auto-updating information, all of the following are true: moving, blinking, scrolling for any moving, blinking or scrolling information that (1) starts automatically, (2) lasts more than five seconds, and (3) is presented in parallel with other content, there is a mechanism for the user to pause , stop, or hide it unless the movement, blinking, or scrolling is part of an activity where it is essential ; and auto-updating for any auto-updating information that (1) starts automatically and (2) is presented in parallel with other content, there is a mechanism for the user to pause, stop, or hide it or to control the frequency of the update unless the auto-updating is part of an activity where it is essential. note 1 for requirements related to flickering or flashing content, refer to guideline 2.3 . note 2 since any content that does not meet this success criterion can interfere with a user's ability to use the whole page, all content on the web page (whether it is used to meet other success criteria or not) must meet this success criterion. see conformance requirement 5: non-interference . note 3 content that is updated periodically by software or that is streamed to the user agent is not required to preserve or present information that is generated or received between the initiation of the pause and resuming presentation, as this may not be technically possible, and in many situations could be misleading to do so. note 4 an animation that occurs as part of a preload phase or similar situation can be considered essential if interaction cannot occur during that phase for all users and if not indicating progress could confuse users or cause them to think that content was frozen or broken.",
+      "for moving, blinking , scrolling, or auto-updating information, all of the following are true: moving, blinking, scrolling for any moving, blinking or scrolling information that (1) starts automatically, (2) lasts more than five seconds, and (3) is presented in parallel with other content, there is a mechanism for the user to pause , stop, or hide it unless the movement, blinking, or scrolling is part of an activity where it is essential ; and auto-updating for any auto-updating information that (1) starts automatically and (2) is presented in parallel with other content, there is a mechanism for the user to pause, stop, or hide it or to control the frequency of the update unless the auto-updating is part of an activity where it is essential. note 1 for requirements related to flickering or flashing content, refer to guideline 2.3 . note 2 since any content that does not meet this success criterion can interfere with a user's ability to use the whole page, all content on the web page (whether it is used to meet other success criteria or not) must meet this success criterion. see conformance requirement 5: non-interference . note 3 content that is updated periodically by software or that is streamed to the user agent is not required to preserve or present information that is generated or received between the initiation of the pause and resuming presentation, as this may not be technically possible, and in many situations could be misleading to do so. note 4 an animation that occurs as part of a preload phase or similar situation can be considered essential if interaction cannot occur during that phase for all users and if not indicating progress could confuse users or cause them to think that content was frozen or broken.",
+      "for moving, blinking , scrolling, or auto-updating information, all of the following are true: moving, blinking, scrolling for any moving, blinking or scrolling information that (1) starts automatically, (2) lasts more than five seconds, and (3) is presented in parallel with other content, there is a mechanism for the user to pause , stop, or hide it unless the movement, blinking, or scrolling is part of an activity where it is essential ; and auto-updating for any auto-updating information that (1) starts automatically and (2) is presented in parallel with other content, there is a mechanism for the user to pause, stop, or hide it or to control the frequency of the update unless the auto-updating is part of an activity where it is essential. note 1 for requirements related to flickering or flashing content, refer to guideline 2.3 . note 2 since any content that does not meet this success criterion can interfere with a user's ability to use the whole page, all content on the web page (whether it is used to meet other success criteria or not) must meet this success criterion. see conformance requirement 5: non-interference . note 3 content that is updated periodically by software or that is streamed to the user agent is not required to preserve or present information that is generated or received between the initiation of the pause and resuming presentation, as this may not be technically possible, and in many situations could be misleading to do so. note 4 an animation that occurs as part of a preload phase or similar situation can be considered essential if interaction cannot occur during that phase for all users and if not indicating progress could confuse users or cause them to think that content was frozen or broken."
     ],
     "full_context": "WCAG 22 Success Criterion 2.2.2 (A): For moving, blinking, scrolling, or auto-updating information, all of the following are true:",
     "related_requirements": [
@@ -1980,7 +2017,7 @@
     },
     "compliance_level": "AAA",
     "testing_requirements": [
-      "Interruptions can be postponed or suppressed by the user, except interruptions involving an emergency ."
+      "interruptions can be postponed or suppressed by the user, except interruptions involving an emergency ."
     ],
     "full_context": "WCAG 22 Success Criterion 2.2.4 (AAA): Interruptions can be postponed or suppressed by the user, except interruptions involving an emergency.",
     "related_requirements": [
@@ -2016,14 +2053,15 @@
     ],
     "techniques": {
       "sufficient": [
-        "  G105: Saving data so that it can be used after a user re-authenticates",
-        "  G181: Encoding user data as hidden or encrypted data in a re-authorization page"
-      ],
-      "sufficientNote": [
-        "Refer to Techniques for Addressing Success Criterion 2.2.1 for techniques related to providing notifications about time limits."
+        "Providing options to continue without loss of data",
+        "G105: Saving data so that it can be used after a user re-authenticates",
+        "G181: Encoding user data as hidden or encrypted data in a re-authorization page"
       ],
       "failure": [
         "F12: Failure of Success Criterion 2.2.5 due to having a session time limit without a mechanism for saving user's input and re-establishing that information upon re-authentication"
+      ],
+      "sufficientNote": [
+        "Refer to Techniques for Addressing Success Criterion 2.2.1 for techniques related to providing notifications about time limits."
       ]
     },
     "compliance_level": "AAA",
@@ -2200,7 +2238,7 @@
     },
     "compliance_level": "AAA",
     "testing_requirements": [
-      "Motion animation triggered by interaction can be disabled, unless the animation is essential to the functionality or the information being conveyed."
+      "motion animation triggered by interaction can be disabled, unless the animation is essential to the functionality or the information being conveyed."
     ],
     "full_context": "WCAG 22 Success Criterion 2.3.3 (AAA): Motion animation triggered by interaction can be disabled, unless the animation is essential to the functionality or the information being conveyed.",
     "related_requirements": [
@@ -2265,14 +2303,16 @@
     ],
     "techniques": {
       "sufficient": [
-        "  G1: Adding a link at the top of each page that goes directly to the main content area",
-        "  G123: Adding a link at the beginning of a block of repeated content to go to the end of the block",
-        "  G124: Adding links at the top of the page to each area of the content",
-        "  ARIA11: Using ARIA landmarks to identify regions of a page",
-        "  H69: Providing heading elements at the beginning of each section of content",
-        "  PDF9: Providing headings by marking content with heading tags in PDF documents",
-        "  H64: Using the title attribute of the iframe element",
-        "  SCR28: Using an expandable and collapsible menu to bypass block of content"
+        "Creating links to skip blocks of repeated material",
+        "G1: Adding a link at the top of each page that goes directly to the main content area",
+        "G123: Adding a link at the beginning of a block of repeated content to go to the end of the block",
+        "G124: Adding links at the top of the page to each area of the content",
+        "Grouping blocks of repeated material in a way that can be skipped",
+        "ARIA11: Using ARIA landmarks to identify regions of a page",
+        "H69: Providing heading elements at the beginning of each section of content",
+        "PDF9: Providing headings by marking content with heading tags in PDF documents",
+        "H64: Using the title attribute of the iframe element",
+        "SCR28: Using an expandable and collapsible menu to bypass block of content"
       ],
       "advisory": [
         "C6: Positioning content based on structural markup",
@@ -2322,7 +2362,10 @@
     ],
     "techniques": {
       "sufficient": [
-        "  G88: Providing descriptive titles for web pages"
+        "H25: Providing a title using the title element",
+        "PDF18: Specifying the document title using the Title entry in the document information dictionary of a PDF document",
+        "G88: Providing descriptive titles for web pages",
+        "associating a title with a web page"
       ],
       "advisory": [
         "G127: Identifying a web page's relationship to a larger collection of web pages"
@@ -2367,11 +2410,13 @@
     "techniques": {
       "sufficient": [
         "G59: Placing the interactive elements in an order that follows sequences and relationships within the content",
-        "  C27: Making the DOM order match the visual order",
-        "  PDF3: Ensuring correct tab and reading order in PDF documents",
-        "  SCR26: Inserting dynamic content into the Document Object Model immediately following its trigger element",
-        "  H102: Creating modal dialogs with the HTML dialog element",
-        "  SCR27: Reordering page sections using the Document Object Model"
+        "Giving focus to elements in an order that follows sequences and relationships within the content",
+        "C27: Making the DOM order match the visual order",
+        "PDF3: Ensuring correct tab and reading order in PDF documents",
+        "Changing a web page dynamically",
+        "SCR26: Inserting dynamic content into the Document Object Model immediately following its trigger element",
+        "H102: Creating modal dialogs with the HTML dialog element",
+        "SCR27: Reordering page sections using the Document Object Model"
       ],
       "failure": [
         "F44: Failure of Success Criterion 2.4.3 due to using tabindex to create a tab order that does not preserve meaning and operability",
@@ -2380,7 +2425,7 @@
     },
     "compliance_level": "A",
     "testing_requirements": [
-      "If a web page can be navigated sequentially and the navigation sequences affect meaning or operation, focusable components receive focus in an order that preserves meaning and operability."
+      "if a web page can be navigated sequentially and the navigation sequences affect meaning or operation, focusable components receive focus in an order that preserves meaning and operability."
     ],
     "full_context": "WCAG 22 Success Criterion 2.4.3 (A): If a web page can be navigated sequentially and the navigation sequences affect meaning or operation, focusable components receive focus in an order that preserves meaning and operability.",
     "related_requirements": [
@@ -2423,18 +2468,24 @@
         "G91: Providing link text that describes the purpose of a link",
         "H30: Providing link text that describes the purpose of a link for anchor elements",
         "H24: Providing text alternatives for the area elements of image maps",
-        "  G189: Providing a control near the beginning of the web page that changes the link text",
-        "  SCR30: Using scripts to change the link text",
+        "Allowing the user to choose short or long link text",
+        "G189: Providing a control near the beginning of the web page that changes the link text",
+        "SCR30: Using scripts to change the link text",
         "G53: Identifying the purpose of a link using link text combined with the text of the enclosing sentence",
-        "  H33: Supplementing link text with the title attribute",
-        "  C7: Using CSS to hide a portion of the link text",
-        "  ARIA7: Using aria-labelledby for link purpose",
-        "  ARIA8: Using aria-label for link purpose",
-        "  H77: Identifying the purpose of a link using link text combined with its enclosing list item",
-        "  H78: Identifying the purpose of a link using link text combined with its enclosing paragraph",
-        "  H79: Identifying the purpose of a link in a data table using the link text combined with its enclosing table cell and associated table header cells",
-        "  H81: Identifying the purpose of a link in a nested list using link text combined with the parent list item under which the list is nested",
-        "  G91: Providing link text that describes the purpose of a link"
+        "Providing a supplemental description of the purpose of a link",
+        "H33: Supplementing link text with the title attribute",
+        "C7: Using CSS to hide a portion of the link text",
+        "Identifying the purpose of a link using link text combined with programmatically determined link context",
+        "ARIA7: Using aria-labelledby for link purpose",
+        "ARIA8: Using aria-label for link purpose",
+        "H77: Identifying the purpose of a link using link text combined with its enclosing list item",
+        "H78: Identifying the purpose of a link using link text combined with its enclosing paragraph",
+        "H79: Identifying the purpose of a link in a data table using the link text combined with its enclosing table cell and associated table header cells",
+        "H81: Identifying the purpose of a link in a nested list using link text combined with the parent list item under which the list is nested",
+        "PDF11: Providing links and link text using the Link annotation and the /Link structure element in PDF documents",
+        "PDF13: Providing replacement text using the /Alt entry for links in PDF documents",
+        "G91: Providing link text that describes the purpose of a link",
+        "semantically indicating links"
       ],
       "advisory": [
         "H2: Combining adjacent image and text links for the same resource",
@@ -2447,7 +2498,7 @@
     },
     "compliance_level": "A",
     "testing_requirements": [
-      "The purpose of each link can be determined from the link text alone or from the link text together with its programmatically determined link context , except where the purpose of the link would be ambiguous to users in general ."
+      "the purpose of each link can be determined from the link text alone or from the link text together with its programmatically determined link context , except where the purpose of the link would be ambiguous to users in general ."
     ],
     "full_context": "WCAG 22 Success Criterion 2.4.4 (A): The purpose of each link can be determined from the link text alone or from the link text together with its programmatically determined link context, except where the purpose of the link would be ambiguous to users in general.",
     "related_requirements": [
@@ -2486,12 +2537,13 @@
     ],
     "techniques": {
       "sufficient": [
-        "  G125: Providing links to navigate to related web pages",
-        "  G64: Providing a Table of Contents",
-        "  G63: Providing a site map",
-        "  G161: Providing a search function to help users find content",
-        "  G126: Providing a list of links to all other web pages",
-        "  G185: Linking to all of the pages on the site from the home page"
+        "Using two or more of the following techniques:",
+        "G125: Providing links to navigate to related web pages",
+        "G64: Providing a Table of Contents",
+        "G63: Providing a site map",
+        "G161: Providing a search function to help users find content",
+        "G126: Providing a list of links to all other web pages",
+        "G185: Linking to all of the pages on the site from the home page"
       ],
       "advisory": [
         "PDF2: Creating bookmarks in PDF documents"
@@ -2674,11 +2726,14 @@
         "G91: Providing link text that describes the purpose of a link",
         "H30: Providing link text that describes the purpose of a link for anchor elements",
         "H24: Providing text alternatives for the area elements of image maps",
-        "  G189: Providing a control near the beginning of the web page that changes the link text",
-        "  SCR30: Using scripts to change the link text",
-        "  C7: Using CSS to hide a portion of the link text",
-        "  PDF11: Providing links and link text using the Link annotation and the /Link structure element in PDF documents",
-        "  PDF13: Providing replacement text using the /Alt entry for links in PDF documents"
+        "Allowing the user to choose short or long link text",
+        "G189: Providing a control near the beginning of the web page that changes the link text",
+        "SCR30: Using scripts to change the link text",
+        "Providing a supplemental description of the purpose of a link",
+        "C7: Using CSS to hide a portion of the link text",
+        "Semantically indicating links",
+        "PDF11: Providing links and link text using the Link annotation and the /Link structure element in PDF documents",
+        "PDF13: Providing replacement text using the /Alt entry for links in PDF documents"
       ],
       "advisory": [
         "H2: Combining adjacent image and text links for the same resource",
@@ -2781,7 +2836,7 @@
     },
     "compliance_level": "AA",
     "testing_requirements": [
-      "Note 1 Where content in a configurable interface can be repositioned by the user, then only the initial positions of user-movable content are considered for testing and conformance of this success criterion."
+      "when a user interface component receives keyboard focus, the component is not entirely hidden due to author-created content. note 1 where content in a configurable interface can be repositioned by the user, then only the initial positions of user-movable content are considered for testing and conformance of this success criterion. note 2 content opened by the user may obscure the component receiving focus. if the user can reveal the focused component without advancing the keyboard focus, the component with focus is not considered visually hidden due to author-created content."
     ],
     "full_context": "WCAG 22 Success Criterion 2.4.11 (AA): When a user interface component receives keyboard focus, the component is not entirely hidden due to author-created content.",
     "related_requirements": [
@@ -2867,9 +2922,8 @@
     },
     "compliance_level": "AAA",
     "testing_requirements": [
-      "Note 3 Contrast calculations can be based on colors defined within the technology (such as HTML , CSS, and SVG).",
-      "Pixels modified by user agent resolution enhancements and anti-aliasing can be ignored.",
-      "Exceptions: The focus indicator is determined by the user agent and cannot be adjusted by the author, or The focus indicator and the indicator's background color are not modified by the author."
+      "when the keyboard focus indicator is visible, an area of the focus indicator meets all the following: is at least as large as the area of a 2 css pixel thick perimeter of the unfocused component or sub-component, and has a contrast ratio of at least 3:1 between the same pixels in the focused and unfocused states. exceptions: the focus indicator is determined by the user agent and cannot be adjusted by the author, or the focus indicator and the indicator's background color are not modified by the author. note 1 what is perceived as the user interface component or sub-component (to determine the perimeter) depends on its visual presentation . the visual presentation includes the component's visible content , border, and component-specific background. it does not include shadow and glow effects outside the component's content, background, or border. note 2 examples of sub-components that may receive a focus indicator are menu items in an opened drop-down menu, or focusable cells in a grid. note 3 contrast calculations can be based on colors defined within the technology (such as html , css, and svg). pixels modified by user agent resolution enhancements and anti-aliasing can be ignored.",
+      "when the keyboard focus indicator is visible, an area of the focus indicator meets all the following: is at least as large as the area of a 2 css pixel thick perimeter of the unfocused component or sub-component, and has a contrast ratio of at least 3:1 between the same pixels in the focused and unfocused states. exceptions: the focus indicator is determined by the user agent and cannot be adjusted by the author, or the focus indicator and the indicator's background color are not modified by the author. note 1 what is perceived as the user interface component or sub-component (to determine the perimeter) depends on its visual presentation . the visual presentation includes the component's visible content , border, and component-specific background. it does not include shadow and glow effects outside the component's content, background, or border. note 2 examples of sub-components that may receive a focus indicator are menu items in an opened drop-down menu, or focusable cells in a grid. note 3 contrast calculations can be based on colors defined within the technology (such as html , css, and svg). pixels modified by user agent resolution enhancements and anti-aliasing can be ignored."
     ],
     "full_context": "WCAG 22 Success Criterion 2.4.13 (AAA): When the keyboard focus indicator is visible, an area of the focus indicator meets all the following:",
     "related_requirements": [
@@ -2945,8 +2999,8 @@
     },
     "compliance_level": "A",
     "testing_requirements": [
-      "Note This requirement applies to web content that interprets pointer actions (i.e., this does not apply to actions that are required to operate the user agent or assistive technology).",
-      "All functionality that uses multipoint or path-based gestures for operation can be operated with a single pointer without a path-based gesture, unless a multipoint or path-based gesture is essential ."
+      "all functionality that uses multipoint or path-based gestures for operation can be operated with a single pointer without a path-based gesture, unless a multipoint or path-based gesture is essential . note this requirement applies to web content that interprets pointer actions (i.e., this does not apply to actions that are required to operate the user agent or assistive technology).",
+      "all functionality that uses multipoint or path-based gestures for operation can be operated with a single pointer without a path-based gesture, unless a multipoint or path-based gesture is essential . note this requirement applies to web content that interprets pointer actions (i.e., this does not apply to actions that are required to operate the user agent or assistive technology)."
     ],
     "full_context": "WCAG 22 Success Criterion 2.5.1 (A): All functionality that uses multipoint or path-based gestures for operation can be operated with a single pointer without a path-based gesture, unless a multipoint or path-based gesture is essential.",
     "related_requirements": [
@@ -2990,8 +3044,8 @@
     },
     "compliance_level": "A",
     "testing_requirements": [
-      "Note 2 This requirement applies to web content that interprets pointer actions (i.e., this does not apply to actions that are required to operate the user agent or assistive technology).",
-      "For functionality that can be operated using a single pointer , at least one of the following is true: No Down-Event The down-event of the pointer is not used to execute any part of the function; Abort or Undo Completion of the function is on the up-event , and a mechanism is available to abort the function before completion or to undo the function after completion; Up Reversal The up-event reverses any outcome of the preceding down-event; Essential Completing the function on the down-event is essential ."
+      "for functionality that can be operated using a single pointer , at least one of the following is true: no down-event the down-event of the pointer is not used to execute any part of the function; abort or undo completion of the function is on the up-event , and a mechanism is available to abort the function before completion or to undo the function after completion; up reversal the up-event reverses any outcome of the preceding down-event; essential completing the function on the down-event is essential . note 1 functions that emulate a keyboard or numeric keypad key press are considered essential. note 2 this requirement applies to web content that interprets pointer actions (i.e., this does not apply to actions that are required to operate the user agent or assistive technology).",
+      "for functionality that can be operated using a single pointer , at least one of the following is true: no down-event the down-event of the pointer is not used to execute any part of the function; abort or undo completion of the function is on the up-event , and a mechanism is available to abort the function before completion or to undo the function after completion; up reversal the up-event reverses any outcome of the preceding down-event; essential completing the function on the down-event is essential . note 1 functions that emulate a keyboard or numeric keypad key press are considered essential. note 2 this requirement applies to web content that interprets pointer actions (i.e., this does not apply to actions that are required to operate the user agent or assistive technology)."
     ],
     "full_context": "WCAG 22 Success Criterion 2.5.2 (A): For functionality that can be operated using a single pointer, at least one of the following is true:",
     "related_requirements": [
@@ -3086,7 +3140,7 @@
     },
     "compliance_level": "A",
     "testing_requirements": [
-      "Functionality that can be operated by device motion or user motion can also be operated by user interface components and responding to the motion can be disabled to prevent accidental actuation, except when: Supported Interface The motion is used to operate functionality through an accessibility supported interface; Essential The motion is essential for the function and doing so would invalidate the activity."
+      "functionality that can be operated by device motion or user motion can also be operated by user interface components and responding to the motion can be disabled to prevent accidental actuation, except when: supported interface the motion is used to operate functionality through an accessibility supported interface; essential the motion is essential for the function and doing so would invalidate the activity."
     ],
     "full_context": "WCAG 22 Success Criterion 2.5.4 (A): Functionality that can be operated by device motion or user motion can also be operated by user interface components and responding to the motion can be disabled to prevent accidental actuation, except when:",
     "related_requirements": [
@@ -3182,7 +3236,7 @@
     },
     "compliance_level": "AAA",
     "testing_requirements": [
-      "Web content does not restrict use of input modalities available on a platform except where the restriction is essential , required to ensure the security of the content, or required to respect user settings."
+      "web content does not restrict use of input modalities available on a platform except where the restriction is essential , required to ensure the security of the content, or required to respect user settings."
     ],
     "full_context": "WCAG 22 Success Criterion 2.5.6 (AAA): Web content does not restrict use of input modalities available on a platform except where the restriction is essential, required to ensure the security of the content, or required to respect user settings.",
     "related_requirements": [
@@ -3220,8 +3274,8 @@
     },
     "compliance_level": "AA",
     "testing_requirements": [
-      "Note This requirement applies to web content that interprets pointer actions (i.e., this does not apply to actions that are required to operate the user agent or assistive technology).",
-      "All functionality that uses a dragging movement for operation can be achieved by a single pointer without dragging, unless dragging is essential or the functionality is determined by the user agent and not modified by the author."
+      "all functionality that uses a dragging movement for operation can be achieved by a single pointer without dragging, unless dragging is essential or the functionality is determined by the user agent and not modified by the author. note this requirement applies to web content that interprets pointer actions (i.e., this does not apply to actions that are required to operate the user agent or assistive technology).",
+      "all functionality that uses a dragging movement for operation can be achieved by a single pointer without dragging, unless dragging is essential or the functionality is determined by the user agent and not modified by the author. note this requirement applies to web content that interprets pointer actions (i.e., this does not apply to actions that are required to operate the user agent or assistive technology)."
     ],
     "full_context": "WCAG 22 Success Criterion 2.5.7 (AA): All functionality that uses a dragging movement for operation can be achieved by a single pointer without dragging, unless dragging is essential or the functionality is determined by the user agent and not modified by the author.",
     "related_requirements": [
@@ -3259,9 +3313,9 @@
     },
     "compliance_level": "AA",
     "testing_requirements": [
-      "The size of the target for pointer inputs is at least 24 by 24 CSS pixels , except when: Spacing Undersized targets (those less than 24 by 24 CSS pixels) are positioned so that if a 24 CSS pixel diameter circle is centered on the bounding box of each, the circles do not intersect another target or the circle for another undersized target; Equivalent The function can be achieved through a different control on the same page that meets this criterion; Inline The target is in a sentence or its size is otherwise constrained by the line-height of non-target text; User Agent Control The size of the target is determined by the user agent and is not modified by the author; Essential A particular presentation of the target is essential or is legally required for the information being conveyed.",
-      "Note 2 For inline targets the line-height should be interpreted as perpendicular to the flow of text.",
-      "The size of the target for pointer inputs is at least 24 by 24 CSS pixels , except when: Spacing Undersized targets (those less than 24 by 24 CSS pixels) are positioned so that if a 24 CSS pixel diameter circle is centered on the bounding box of each, the circles do not intersect another target or the circle for another undersized target; Equivalent The function can be achieved through a different control on the same page that meets this criterion; Inline The target is in a sentence or its size is otherwise constrained by the line-height of non-target text; User Agent Control The size of the target is determined by the user agent and is not modified by the author; Essential A particular presentation of the target is essential or is legally required for the information being conveyed."
+      "the size of the target for pointer inputs is at least 24 by 24 css pixels , except when: spacing undersized targets (those less than 24 by 24 css pixels) are positioned so that if a 24 css pixel diameter circle is centered on the bounding box of each, the circles do not intersect another target or the circle for another undersized target; equivalent the function can be achieved through a different control on the same page that meets this criterion; inline the target is in a sentence or its size is otherwise constrained by the line-height of non-target text; user agent control the size of the target is determined by the user agent and is not modified by the author; essential a particular presentation of the target is essential or is legally required for the information being conveyed. note 1 targets that allow for values to be selected spatially based on position within the target are considered one target for the purpose of the success criterion. examples include sliders, color pickers displaying a gradient of colors, or editable areas where you position the cursor. note 2 for inline targets the line-height should be interpreted as perpendicular to the flow of text. for example, in a language displayed vertically, the line-height would be horizontal.",
+      "the size of the target for pointer inputs is at least 24 by 24 css pixels , except when: spacing undersized targets (those less than 24 by 24 css pixels) are positioned so that if a 24 css pixel diameter circle is centered on the bounding box of each, the circles do not intersect another target or the circle for another undersized target; equivalent the function can be achieved through a different control on the same page that meets this criterion; inline the target is in a sentence or its size is otherwise constrained by the line-height of non-target text; user agent control the size of the target is determined by the user agent and is not modified by the author; essential a particular presentation of the target is essential or is legally required for the information being conveyed. note 1 targets that allow for values to be selected spatially based on position within the target are considered one target for the purpose of the success criterion. examples include sliders, color pickers displaying a gradient of colors, or editable areas where you position the cursor. note 2 for inline targets the line-height should be interpreted as perpendicular to the flow of text. for example, in a language displayed vertically, the line-height would be horizontal.",
+      "the size of the target for pointer inputs is at least 24 by 24 css pixels , except when: spacing undersized targets (those less than 24 by 24 css pixels) are positioned so that if a 24 css pixel diameter circle is centered on the bounding box of each, the circles do not intersect another target or the circle for another undersized target; equivalent the function can be achieved through a different control on the same page that meets this criterion; inline the target is in a sentence or its size is otherwise constrained by the line-height of non-target text; user agent control the size of the target is determined by the user agent and is not modified by the author; essential a particular presentation of the target is essential or is legally required for the information being conveyed. note 1 targets that allow for values to be selected spatially based on position within the target are considered one target for the purpose of the success criterion. examples include sliders, color pickers displaying a gradient of colors, or editable areas where you position the cursor. note 2 for inline targets the line-height should be interpreted as perpendicular to the flow of text. for example, in a language displayed vertically, the line-height would be horizontal."
     ],
     "full_context": "WCAG 22 Success Criterion 2.5.8 (AA): The size of the target for pointer inputs is at least 24 by 24 CSS pixels, except when:",
     "related_requirements": [
@@ -3295,7 +3349,6 @@
       "predictable",
       "input-assistance"
     ],
-    "content_hash": "7679ed4592ab2a6a6a733456f87cac44dbf9bf20f4a900fbbd4e0877a0372ddd",
     "full_context": "WCAG 22 Principle 3: Information and the operation of the user interface must be understandable."
   },
   {
@@ -3355,7 +3408,7 @@
     },
     "compliance_level": "A",
     "testing_requirements": [
-      "The default human language of each web page can be programmatically determined ."
+      "the default human language of each web page can be programmatically determined ."
     ],
     "full_context": "WCAG 22 Success Criterion 3.1.1 (A): The default human language of each web page can be programmatically determined.",
     "related_requirements": [
@@ -3401,7 +3454,7 @@
     },
     "compliance_level": "AA",
     "testing_requirements": [
-      "The human language of each passage or phrase in the content can be programmatically determined except for proper names, technical terms, words of indeterminate language, and words or phrases that have become part of the vernacular of the immediately surrounding text ."
+      "the human language of each passage or phrase in the content can be programmatically determined except for proper names, technical terms, words of indeterminate language, and words or phrases that have become part of the vernacular of the immediately surrounding text ."
     ],
     "full_context": "WCAG 22 Success Criterion 3.1.2 (AA): The human language of each passage or phrase in the content can be programmatically determined except for proper names, technical terms, words of indeterminate language, and words or phrases that have become part of the vernacular of the immediately surrounding text.",
     "related_requirements": [
@@ -3645,15 +3698,15 @@
       "sufficient": [
         "G107: Using \"activate\" rather than \"focus\" as a trigger for changes of context"
       ],
-      "sufficientNote": [
-        "A change of content is not always a change of context. This success criterion is automatically met if changes in content are not also changes of context."
-      ],
       "advisory": [
         "G200: Opening new windows and tabs from a link only when necessary",
         "G201: Giving users advanced warning when opening a new window"
       ],
       "failure": [
         "F55: Failure of Success Criteria 2.1.1, 2.4.7, 2.4.13, and 3.2.1 due to using script to remove focus when focus is received"
+      ],
+      "sufficientNote": [
+        "A change of content is not always a change of context. This success criterion is automatically met if changes in content are not also changes of context."
       ]
     },
     "compliance_level": "A",
@@ -3691,11 +3744,11 @@
     "techniques": {
       "sufficient": [
         "G80: Providing a submit button to initiate a change of context",
+        "H32: Providing submit buttons",
+        "H84: Using a button with a select element to perform an action",
+        "PDF15: Providing submit buttons with the submit-form action in PDF forms",
         "G13: Describing what will happen before a change to a form control that causes a change of context to occur is made",
         "SCR19: Using an onchange event on a select element without causing a change of context"
-      ],
-      "sufficientNote": [
-        "A change of content is not always a change of context. This success criterion is automatically met if changes in content are not also changes of context."
       ],
       "advisory": [
         "G201: Giving users advanced warning when opening a new window"
@@ -3703,6 +3756,9 @@
       "failure": [
         "F36: Failure of Success Criterion 3.2.2 due to automatically submitting a form and presenting new content without prior warning when the last field in the form is given a value",
         "F37: Failure of Success Criterion 3.2.2 due to launching a new window without prior warning when the selection of a radio button, check box or select list is changed"
+      ],
+      "sufficientNote": [
+        "A change of content is not always a change of context. This success criterion is automatically met if changes in content are not also changes of context."
       ]
     },
     "compliance_level": "A",
@@ -3789,13 +3845,14 @@
     ],
     "techniques": {
       "sufficient": [
-        "  G197: Using labels, names, and text alternatives consistently for content that has the same functionality"
-      ],
-      "sufficientNote": [
-        "Text alternatives that are \"consistent\" are not always \"identical.\" For instance, you may have a graphical arrow at the bottom of a web page that links to the next web page. The text alternative may say \"Go to page 4.\" Naturally, it would not be appropriate to repeat this exact text alternative on the next web page. It would be more appropriate to say \"Go to page 5\". Although these text alternatives would not be identical, they would be consistent, and therefore would satisfy this success criterion. A single non-text-content-item may be used to serve different functions. In such cases, different text alternatives are necessary and should be used. Examples can be commonly found with the use of icons such as check marks, cross marks, and traffic signs. Their functions can be different depending on the context of the web page. A check mark icon may function as \"approved\", \"completed\", or \"included\", to name a few, depending on the situation. Using \"check mark\" as text alternative across all web pages does not help users understand the function of the icon. Different text alternatives can be used when the same non-text content serves multiple functions."
+        "G197: Using labels, names, and text alternatives consistently for content that has the same functionality",
+        "following the sufficient techniques for Success Criterion 1.1.1 and sufficient techniques for Success Criterion 4.1.2 for providing labels, names, and text alternatives"
       ],
       "failure": [
         "F31: Failure of Success Criterion 3.2.4 due to using two different labels for the same function on different web pages within a set of web pages"
+      ],
+      "sufficientNote": [
+        "Text alternatives that are \"consistent\" are not always \"identical.\" For instance, you may have a graphical arrow at the bottom of a web page that links to the next web page. The text alternative may say \"Go to page 4.\" Naturally, it would not be appropriate to repeat this exact text alternative on the next web page. It would be more appropriate to say \"Go to page 5\". Although these text alternatives would not be identical, they would be consistent, and therefore would satisfy this success criterion. A single non-text-content-item may be used to serve different functions. In such cases, different text alternatives are necessary and should be used. Examples can be commonly found with the use of icons such as check marks, cross marks, and traffic signs. Their functions can be different depending on the context of the web page. A check mark icon may function as \"approved\", \"completed\", or \"included\", to name a few, depending on the situation. Using \"check mark\" as text alternative across all web pages does not help users understand the function of the icon. Different text alternatives can be used when the same non-text content serves multiple functions."
       ]
     },
     "compliance_level": "AA",
@@ -3897,7 +3954,7 @@
     },
     "compliance_level": "A",
     "testing_requirements": [
-      "Note 2 For this success criterion, \"the same order relative to other page content\" can be thought of as how the content is ordered when the page is serialized."
+      "if a web page contains any of the following help mechanisms , and those mechanisms are repeated on multiple web pages within a set of web pages , they occur in the same order relative to other page content, unless a change is initiated by the user: human contact details; human contact mechanism; self-help option; a fully automated contact mechanism. note 1 help mechanisms may be provided directly on the page, or may be provided via a direct link to a different page containing the information. note 2 for this success criterion, \"the same order relative to other page content\" can be thought of as how the content is ordered when the page is serialized. the visual position of a help mechanism is likely to be consistent across pages for the same page variation (e.g., css break-point). the user can initiate a change, such as changing the page's zoom or orientation, which may trigger a different page variation. this criterion is concerned with relative order across pages displayed in the same page variation (e.g., same zoom level and orientation)."
     ],
     "full_context": "WCAG 22 Success Criterion 3.2.6 (A): If a web page contains any of the following help mechanisms, and those mechanisms are repeated on multiple web pages within a set of web pages, they occur in the same order relative to other page content, unless a change is initiated by the user:",
     "related_requirements": [
@@ -4012,13 +4069,19 @@
     "techniques": {
       "sufficient": [
         "G131: Providing descriptive labels",
+        "ARIA1: Using the aria-describedby property to provide a descriptive label for user interface controls",
+        "ARIA9: Using aria-labelledby to concatenate a label from several text nodes",
+        "ARIA17: Using grouping roles to identify related form controls",
+        "G89: Providing expected data format and example",
+        "G184: Providing text instructions at the beginning of a form or set of fields that describes the necessary input",
+        "G162: Positioning labels to maximize predictability of relationships",
+        "G83: Providing text descriptions to identify required fields that were not completed",
+        "H90: Indicating required form controls using label or legend",
+        "PDF5: Indicating required form controls in PDF forms",
         "H44: Using label elements to associate text labels with form controls",
         "PDF10: Providing labels for interactive form controls in PDF documents",
         "H71: Providing a description for groups of form controls using fieldset and legend elements",
         "G167: Using an adjacent button to label the purpose of a field"
-      ],
-      "sufficientNote": [
-        "The techniques at the end of the above list should be considered \"last resort\" and only used when the other techniques cannot be applied to the page. The earlier techniques are preferred because they increase accessibility to a wider user group."
       ],
       "advisory": [
         "G13: Describing what will happen before a change to a form control that causes a change of context to occur is made",
@@ -4026,6 +4089,9 @@
       ],
       "failure": [
         "F82: Failure of Success Criterion 3.3.2 by visually formatting a set of phone number fields but not including a text label"
+      ],
+      "sufficientNote": [
+        "The techniques at the end of the above list should be considered \"last resort\" and only used when the other techniques cannot be applied to the page. The earlier techniques are preferred because they increase accessibility to a wider user group."
       ]
     },
     "compliance_level": "A",
@@ -4066,14 +4132,14 @@
         "Situation A: If information for a field is required to be in a specific data format:",
         "Situation B: Information provided by the user is required to be one of a limited set of values:"
       ],
-      "sufficientNote": [
-        "In some cases, more than one of these situations may apply. For example, when a mandatory field also requires the data to be in a specific format."
-      ],
       "advisory": [
         "G139: Creating a mechanism that allows users to jump to errors",
         "G199: Providing success feedback when data is submitted successfully",
         "SCR18: Providing client-side validation and alert",
         "SCR32: Providing client-side validation and adding error text via the DOM"
+      ],
+      "sufficientNote": [
+        "In some cases, more than one of these situations may apply. For example, when a mandatory field also requires the data to be in a specific format."
       ]
     },
     "compliance_level": "AA",
@@ -4233,8 +4299,7 @@
     },
     "compliance_level": "A",
     "testing_requirements": [
-      "Information previously entered by or provided to the user that is required to be entered again in the same process is either: auto-populated, or available for the user to select.",
-      "Except when: re-entering the information is essential , the information is required to ensure the security of the content, or previously entered information is no longer valid."
+      "information previously entered by or provided to the user that is required to be entered again in the same process is either: auto-populated, or available for the user to select. except when: re-entering the information is essential , the information is required to ensure the security of the content, or previously entered information is no longer valid."
     ],
     "full_context": "WCAG 22 Success Criterion 3.3.7 (A): Information previously entered by or provided to the user that is required to be entered again in the same process is either:",
     "related_requirements": [
@@ -4281,7 +4346,7 @@
     },
     "compliance_level": "AA",
     "testing_requirements": [
-      "A cognitive function test (such as remembering a password or solving a puzzle) is not required for any step in an authentication process unless that step provides at least one of the following: Alternative Another authentication method that does not rely on a cognitive function test."
+      "a cognitive function test (such as remembering a password or solving a puzzle) is not required for any step in an authentication process unless that step provides at least one of the following: alternative another authentication method that does not rely on a cognitive function test. mechanism a mechanism is available to assist the user in completing the cognitive function test. object recognition the cognitive function test is to recognize objects. personal content the cognitive function test is to identify non-text content the user provided to the website. note 1 \"object recognition\" and \"personal content\" may be represented by images, video, or audio. note 2 examples of mechanisms that satisfy this criterion include: support for password entry by password managers to reduce memory need, and copy and paste to reduce the cognitive burden of re-typing."
     ],
     "full_context": "WCAG 22 Success Criterion 3.3.8 (AA): A cognitive function test (such as remembering a password or solving a puzzle) is not required for any step in an authentication process unless that step provides at least one of the following:",
     "related_requirements": [
@@ -4321,7 +4386,7 @@
     },
     "compliance_level": "AAA",
     "testing_requirements": [
-      "A cognitive function test (such as remembering a password or solving a puzzle) is not required for any step in an authentication process unless that step provides at least one of the following: Alternative Another authentication method that does not rely on a cognitive function test."
+      "a cognitive function test (such as remembering a password or solving a puzzle) is not required for any step in an authentication process unless that step provides at least one of the following: alternative another authentication method that does not rely on a cognitive function test. mechanism a mechanism is available to assist the user in completing the cognitive function test."
     ],
     "full_context": "WCAG 22 Success Criterion 3.3.9 (AAA): A cognitive function test (such as remembering a password or solving a puzzle) is not required for any step in an authentication process unless that step provides at least one of the following:",
     "related_requirements": [
@@ -4341,7 +4406,6 @@
     "guideline_ids": [
       "compatible"
     ],
-    "content_hash": "12ac565acf99cf5c2c85f41eef1bcf869b3cc2bebed1594c7c7588f7faf16769",
     "full_context": "WCAG 22 Principle 4: Content must be robust enough that it can be interpreted by a wide variety of user agents, including assistive technologies."
   },
   {
@@ -4369,7 +4433,7 @@
     "chunk_id": "success_criterion_parsing",
     "wcag_version": "22",
     "id": "parsing",
-    "level": "success_criterion",
+    "level": "",
     "num": "4.1.1",
     "handle": "Parsing (Obsolete and removed)",
     "type": "success_criterion",
@@ -4433,7 +4497,7 @@
     },
     "compliance_level": "A",
     "testing_requirements": [
-      "For all user interface components (including but not limited to: form elements, links and components generated by scripts), the name and role can be programmatically determined ; states , properties, and values that can be set by the user can be programmatically set ; and notification of changes to these items is available to user agents , including assistive technologies ."
+      "for all user interface components (including but not limited to: form elements, links and components generated by scripts), the name and role can be programmatically determined ; states , properties, and values that can be set by the user can be programmatically set ; and notification of changes to these items is available to user agents , including assistive technologies . note this success criterion is primarily for web authors who develop or script their own user interface components. for example, standard html controls already meet this success criterion when used according to specification."
     ],
     "full_context": "WCAG 22 Success Criterion 4.1.2 (A): For all user interface components (including but not limited to: form elements, links and components generated by scripts), the name and role can be programmatically determined; states, properties, and values that can be set by the user can be programmatically set; and notification of changes to these items is available to user agents, including assistive technologies.",
     "related_requirements": [
@@ -4483,7 +4547,7 @@
     },
     "compliance_level": "AA",
     "testing_requirements": [
-      "In content implemented using markup languages, status messages can be programmatically determined through role or properties such that they can be presented to the user by assistive technologies without receiving focus."
+      "in content implemented using markup languages, status messages can be programmatically determined through role or properties such that they can be presented to the user by assistive technologies without receiving focus."
     ],
     "full_context": "WCAG 22 Success Criterion 4.1.3 (AA): In content implemented using markup languages, status messages can be programmatically determined through role or properties such that they can be presented to the user by assistive technologies without receiving focus.",
     "related_requirements": [
