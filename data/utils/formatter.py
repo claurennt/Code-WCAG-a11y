@@ -1,8 +1,37 @@
-from typing import Dict, Any, Literal, List
+from typing import TypedDict, Union
 
 import re
 
-WcagVersion = Literal["21", "22"]
+from classes.wcag_types import (
+    AdvisoryItem,
+    FailureItem,
+    Guideline,
+    Principle,
+    Successcriterion,
+    SufficientItem,
+    Techniques,
+)
+
+
+TechniqueItem = Union[SufficientItem, AdvisoryItem, FailureItem]
+
+
+class BaseData(TypedDict):
+    chunk_id: str
+    wcag_version: str
+    id: str
+    level: str
+    num: str
+    handle: str
+    type: str
+    description: str
+
+
+class ParentData(TypedDict):
+    parent_id: str
+    parent_type: str
+    parent_num: str
+    parent_title: str
 
 
 def clean_wcag_text(text: str) -> str:
@@ -24,91 +53,85 @@ def clean_wcag_text(text: str) -> str:
     return text.strip()
 
 
-def get_base_data(type: Dict, type_name: str, version: str) -> Dict[str, str]:
+def get_base_data(
+    type: Union[Principle, Guideline, Successcriterion],
+    type_name: str,
+    version: str,
+) -> BaseData:
     return {
-        "chunk_id": f"{type_name}_{type.get('id')}",
+        "chunk_id": f"{type_name}_{type.id}",
         "wcag_version": version,
-        "id": type.get("id"),
-        "level": type.get("level") or type_name,
-        "num": type.get("num"),
-        "handle": type.get("handle"),
+        "id": type.id,
+        "level": type.level if isinstance(type, Successcriterion) else type_name,
+        "num": type.num,
+        "handle": type.handle,
         "type": type_name,
     }
 
 
-def get_parent_data(parent_type: str, parent: Dict) -> Dict[str, str]:
+def get_parent_data(
+    parent_type: str, parent: Union[Principle, Guideline]
+) -> ParentData:
     return {
-        "parent_id": parent.get("id"),
+        "parent_id": parent.id,
         "parent_type": parent_type,
-        "parent_num": parent.get("num"),
-        "parent_title": parent.get("title"),
+        "parent_num": parent.num,
+        "parent_title": parent.title,
     }
 
 
-def extract_techniques_summary(techniques: Dict[str, Any]) -> Dict[str, List[str]]:
-    """Extract and format techniques while preserving logical structure."""
+def extract_techniques_summary(techniques: Techniques) -> dict[str, list[str]]:
     if not techniques:
         return {}
 
-    summary: Dict[str, List[str]] = {}
+    summary: dict[str, list[str]] = {}
 
-    for category, items in techniques.items():
+    if techniques.sufficient:
+        summary["sufficient"] = []
+        for item in techniques.sufficient:
+            summary["sufficient"].extend(format_technique_item(item))
 
-        if not items:
-            continue
+    if techniques.advisory:
+        summary["advisory"] = []
+        for item in techniques.advisory:
+            summary["advisory"].extend(format_technique_item(item))
 
-        summary[category] = []
-        if category == "sufficientNote":
-            summary[category] = [clean_wcag_text(items)]
-            continue
-        for item in items:
+    if techniques.failure:
+        summary["failure"] = []
+        for item in techniques.failure:
+            summary["failure"].extend(format_technique_item(item))
 
-            summary[category].extend(format_technique_item(item))
+    if techniques.sufficientNote:
+        summary["sufficientNote"] = [clean_wcag_text(techniques.sufficientNote)]
 
     return summary
 
 
-def format_technique_item(item: Dict[str, Any], indent: int = 0) -> List[str]:
-    lines = []
-    prefix = "  " * indent
+def get_sub_items(item: TechniqueItem) -> list[TechniqueItem]:
+    """Return all sub-items from 'using' or 'and_' for recursion."""
+    using = getattr(item, "using", None) or []
+    and_ = getattr(item, "and_", None) or []
+    return using + and_
 
-    # Case 1: Simple technique with ID
-    if "id" in item and "title" in item:
-        lines.append(f"{prefix}{item['id']}: {item['title']}")
-        return lines
 
-    # Case 2: Title-only node (section header)
-    if "title" in item and "using" in item:
-        for sub in item["using"]:
-            if "id" in sub:
-                lines.extend(format_technique_item(sub, indent + 1))
-        return lines
+def format_technique_item(item: TechniqueItem) -> list[str]:
+    """Recursively format a technique item into a list of strings."""
+    lines: list[str] = []
 
-    # Case 3: Logical AND
-    if "and" in item:
-        for sub in item["and"]:
-            if "id" in sub:
-                lines.extend(format_technique_item(sub, indent + 1))
-        return lines
+    if item.title:
+        line = f"{item.id}: {item.title}" if item.id else item.title
+        lines.append(clean_wcag_text(line))
 
-    # Case 4: Using one or more techniques
-    if "using" in item:
-        for sub in item["using"]:
-            if "id" in sub:
-                lines.extend(format_technique_item(sub, indent + 1))
-        return lines
-
-    # Fallback
-    if "title" in item:
-        lines.append(f"{prefix}{clean_wcag_text(item['title'])}")
+    for sub_item in get_sub_items(item):
+        lines.extend(format_technique_item(sub_item))
 
     return lines
 
 
-def extract_testing_requirements(sc: Dict[str, Any]) -> List[str]:
+def extract_testing_requirements(success_criterion: Successcriterion) -> list[str]:
     """Extract testing requirements from success criterion."""
     requirements = []
-    description = clean_wcag_text(sc.get("content", ""))
+    description = clean_wcag_text(success_criterion.content).lower()
 
     # Extract key testing phrases
     test_phrases = [
@@ -123,7 +146,7 @@ def extract_testing_requirements(sc: Dict[str, Any]) -> List[str]:
 
     # Simple extraction - you can enhance this
     for phrase in test_phrases:
-        if phrase in description.lower():
+        if phrase in description:
             # Find the sentence containing the phrase
             sentences = re.split(r"(?<=[.!?])\s+(?=[A-Z])", description)
             for sentence in sentences:
