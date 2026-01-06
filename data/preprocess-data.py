@@ -1,8 +1,15 @@
-import hashlib
 from pathlib import Path
-from typing import Literal, Dict, Any, List
+from typing import Any
 import json
 
+from classes.chunk_types import SuccessCriterionChunk, TermChunk, WcagVersion
+from classes.wcag_types import (
+    Guideline,
+    Principle,
+    Successcriterion,
+    Term,
+    WCAGData,
+)
 from utils.retrieval import find_related_requirements
 from utils.formatter import (
     clean_wcag_text,
@@ -16,102 +23,149 @@ BASE_DIR = Path(__file__).resolve().parent
 STORAGE_DIR = BASE_DIR / "storage"
 STORAGE_DIR.mkdir(exist_ok=True)
 
-WcagVersion = Literal["21", "22"]
 
-
-def get_wcag_data(version: WcagVersion = "22") -> Dict[str, Any]:
+def get_wcag_data(version: WcagVersion = "22") -> WCAGData:
     """Load and parse WCAG JSON data."""
     file_path = BASE_DIR / f"wcag-{version}.json"
     with open(file_path, "r", encoding="utf-8") as f:
-        return json.load(f)
+        data = json.load(f)
+    return WCAGData.model_validate(data)
 
 
-def make_principle_chunk(principle: Dict[str, Any], version: str) -> Dict[str, Any]:
-    description = clean_wcag_text(principle.get("content", ""))
+def make_success_criteria_chunk(
+    success_criteria: Successcriterion,
+    guideline: Guideline,
+    principle: Principle,
+    version: str,
+    wcag_data: WCAGData,
+) -> SuccessCriterionChunk:
+    description = clean_wcag_text(success_criteria.content)
+
+    return {
+        **get_base_data(success_criteria, "success_criterion", version),
+        # Content
+        "description": description,
+        # Hierarchy
+        **get_parent_data("guideline", guideline),
+        "principle_id": principle.id,
+        "principle_num": principle.num,
+        "principle_title": principle.title,
+        "versions_applicable": success_criteria.versions,
+        "techniques": extract_techniques_summary(success_criteria.techniques),
+        # Compliance / testing
+        "compliance_level": success_criteria.level,
+        "testing_requirements": extract_testing_requirements(success_criteria),
+        "related_requirements": find_related_requirements(success_criteria, wcag_data),
+        # Metadata
+        "full_context": f"WCAG {version} Success Criterion {success_criteria.num} ({success_criteria.level}): {success_criteria.title}",
+    }
+
+
+def make_principle_chunk(principle: Principle, version: str) -> PrincipleChunk:
+    description = clean_wcag_text(principle.content)
+    guideline_ids = [guideline.id for guideline in principle.guidelines]
+
+    guidelines_count = len(principle.guidelines)
     return {
         **get_base_data(principle, "principle", version),
+        # Content
         "description": description,
-        "guidelines_count": len(principle.get("guidelines", [])),
-        "guideline_ids": [g.get("id") for g in principle.get("guidelines", [])],
-        "content_hash": hashlib.sha256(description.encode("utf-8")).hexdigest(),
-        "full_context": f"WCAG {version} Principle {principle.get('num')}: {principle.get('title')}",
+        # Guidelines data under this principle
+        "guidelines_count": guidelines_count,
+        "guideline_ids": guideline_ids,
+        # Metadata
+        "full_context": f"WCAG {version} Principle {principle.num}: {principle.title}",
     }
 
 
-def make_guideline_chunk(
-    guideline: Dict[str, Any], principle: Dict[str, Any], version: str
-) -> Dict[str, Any]:
-    description = clean_wcag_text(guideline.get("content", ""))
+def make_guideline_chunk(guideline: Guideline, principle: Principle, version: str):
+    description = clean_wcag_text(guideline.content)
+    success_criteria_ids = [
+        successcriteria.id for successcriteria in guideline.successcriteria
+    ]
+    success_criteria_count = len(guideline.successcriteria)
+
     return {
         **get_base_data(guideline, "guideline", version),
+        # Content
         "description": description,
+        # Hierarchy
         **get_parent_data("principle", principle),
-        "success_criteria_count": len(guideline.get("successcriteria", [])),
-        "success_criteria_ids": [
-            sc.get("id") for sc in guideline.get("successcriteria", [])
-        ],
-        "full_context": f"WCAG {version} {principle.get('num')}.{guideline.get('num')}: {guideline.get('title')} (under {principle.get('num')}. {principle.get('title')})",
+        # Success Criteria for this guideline
+        "success_criteria_count": success_criteria_count,
+        "success_criteria_ids": success_criteria_ids,
+        # Metadata
+        "full_context": f"WCAG {version} {principle.num}.{guideline.num}: {guideline.title} (under {principle.num}. {principle.title})",
     }
 
 
-def make_sc_chunk(
-    sc: Dict[str, Any],
-    guideline: Dict[str, Any],
-    principle: Dict[str, Any],
+def make_success_criteria_chunk(
+    success_criteria: Successcriterion,
+    guideline: Guideline,
+    principle: Principle,
     version: str,
-    wcag_data: Dict[str, Any],
-) -> Dict[str, Any]:
-    description = clean_wcag_text(sc.get("content", ""))
+    wcag_data: WCAGData,
+):
+    description = clean_wcag_text(success_criteria.content)
+
     return {
-        **get_base_data(sc, "success_criterion", version),
+        **get_base_data(success_criteria, "success_criterion", version),
+        # Content
         "description": description,
+        # Hierarchy
         **get_parent_data("guideline", guideline),
-        "principle_id": principle.get("id"),
-        "principle_num": principle.get("num"),
-        "principle_title": principle.get("title"),
-        "versions_applicable": sc.get("versions", []),
-        "techniques": extract_techniques_summary(sc.get("techniques", {})),
-        "compliance_level": sc.get("level", ""),
-        "testing_requirements": extract_testing_requirements(sc),
-        "full_context": f"WCAG {version} Success Criterion {sc.get('num')} ({sc.get('level')}): {sc.get('title')}",
-        "related_requirements": find_related_requirements(sc, wcag_data),
+        "principle_id": principle.id,
+        "principle_num": principle.num,
+        "principle_title": principle.title,
+        "versions_applicable": success_criteria.versions,
+        "techniques": extract_techniques_summary(success_criteria.techniques),
+        # Compliance / testing
+        "compliance_level": success_criteria.level,
+        "testing_requirements": extract_testing_requirements(success_criteria),
+        # Metadata
+        "full_context": f"WCAG {version} Success Criterion {success_criteria.num} ({success_criteria.level}): {success_criteria.title}",
+        "related_requirements": find_related_requirements(success_criteria, wcag_data),
     }
 
 
-def make_term_chunk(term: Dict[str, Any], version: str) -> Dict[str, Any]:
+def make_term_chunk(term: Term, version: str) -> TermChunk:
+    definition = clean_wcag_text(term.definition)
+
     return {
-        "chunk_id": f"term_{term.get('id')}",
+        "chunk_id": f"term_{term.id}",
         "type": "definition",
         "wcag_version": version,
-        "id": term.get("id"),
-        "term": term.get("name"),
-        "definition": clean_wcag_text(term.get("definition", "")),
+        "id": term.id,
+        "term": term.name,
+        "definition": definition,
         "level": "definition",
-        "full_context": f"WCAG {version} Definition: {term.get('name')}",
+        "full_context": f"WCAG {version} Definition: {term.name}",
     }
 
 
-def preprocess_wcag_data(version: str = "22") -> List[Dict[str, Any]]:
+def preprocess_wcag_data(version: str = "22"):
     wcag_data = get_wcag_data(version)
-    chunks: List[Dict[str, Any]] = []
+    chunks = []
 
-    for principle in wcag_data.get("principles", []):
+    for principle in wcag_data.principles:
         chunks.append(make_principle_chunk(principle, version))
-        for guideline in principle.get("guidelines", []):
+        for guideline in principle.guidelines:
             chunks.append(make_guideline_chunk(guideline, principle, version))
-            for sc in guideline.get("successcriteria", []):
+            for sc in guideline.successcriteria:
                 chunks.append(
-                    make_sc_chunk(sc, guideline, principle, version, wcag_data)
+                    make_success_criteria_chunk(
+                        sc, guideline, principle, version, wcag_data
+                    )
                 )
 
     # Add terms/definitions
-    for term in wcag_data.get("terms", []):
+    for term in wcag_data.terms:
         chunks.append(make_term_chunk(term, version))
 
     return chunks
 
 
-def save_preprocessed_data(chunks: List[Dict[str, Any]], version: WcagVersion = "22"):
+def save_preprocessed_data(chunks: list[dict[str, Any]], version: WcagVersion = "22"):
     """Save preprocessed data to a file."""
     output_file = STORAGE_DIR / f"wcag_{version}_preprocessed.json"
     with open(output_file, "w", encoding="utf-8") as f:
