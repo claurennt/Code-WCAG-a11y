@@ -2,7 +2,7 @@ from typing import TypedDict
 from typing_extensions import Literal
 
 
-WcagVersion = Literal["21", "22"]
+WcagVersion = Literal["2.1", "2.2"]
 
 
 class BaseData(TypedDict):

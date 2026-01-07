@@ -24,7 +24,7 @@ STORAGE_DIR = BASE_DIR / "storage"
 STORAGE_DIR.mkdir(exist_ok=True)
 
 
-def get_wcag_data(version: WcagVersion = "22") -> WCAGData:
+def get_wcag_data(version: WcagVersion = "2.2") -> WCAGData:
     """Load and parse WCAG JSON data."""
     file_path = BASE_DIR / f"wcag-{version}.json"
     with open(file_path, "r", encoding="utf-8") as f:
@@ -143,7 +143,7 @@ def make_term_chunk(term: Term, version: str) -> TermChunk:
     }
 
 
-def preprocess_wcag_data(version: str = "22"):
+def preprocess_wcag_data(version: WcagVersion = "2.2") -> list[dict[str, Any]]:
     wcag_data = get_wcag_data(version)
     chunks = []
 
@@ -165,7 +165,7 @@ def preprocess_wcag_data(version: str = "22"):
     return chunks
 
 
-def save_preprocessed_data(chunks: list[dict[str, Any]], version: WcagVersion = "22"):
+def save_preprocessed_data(chunks: list[dict[str, Any]], version: WcagVersion = "2.2"):
     """Save preprocessed data to a file."""
     output_file = STORAGE_DIR / f"wcag_{version}_preprocessed.json"
     with open(output_file, "w", encoding="utf-8") as f:
@@ -177,7 +177,7 @@ def save_preprocessed_data(chunks: list[dict[str, Any]], version: WcagVersion = 
 # Main execution
 if __name__ == "__main__":
     # Preprocess both versions
-    for version in ["21", "22"]:
+    for version in ["2.1", "2.2"]:
         print(f"\nProcessing WCAG {version}...")
         chunks = preprocess_wcag_data(version)  # type: ignore
         save_preprocessed_data(chunks, version)  # type: ignore
