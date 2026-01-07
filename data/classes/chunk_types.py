@@ -1,6 +1,5 @@
 from typing import TypedDict
 from typing_extensions import Literal
-from utils.formatter import BaseData, ParentData
 
 
 WcagVersion = Literal["21", "22"]
