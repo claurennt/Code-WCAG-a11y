@@ -1,6 +1,6 @@
 # WCAG Code A11y Agent
 
-An MCP (Model Context Protocol) agent that analyzes code files and their modules to determine relevant WCAG (Web Content Accessibility Guidelines) Success Criteria for developers and QA teams.
+An MCP (Model Context Protocol) agent that analyzes project files and related modules to determine relevant WCAG (Web Content Accessibility Guidelines) Success Criteria for developers and QA teams.
 
 ## What It Does
 
