@@ -123,7 +123,7 @@ def make_success_criteria_chunk(
         "compliance_level": success_criteria.level,
         "testing_requirements": extract_testing_requirements(success_criteria),
         # Metadata
-        "full_context": f"WCAG {version} Success Criterion {success_criteria.num} ({success_criteria.level}): {success_criteria.title}",
+        "full_context": f"WCAG {version} Success Criterion {success_criteria.num} ({success_criteria.level}): {description}",
         "related_requirements": find_related_requirements(success_criteria, wcag_data),
     }
 
