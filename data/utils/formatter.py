@@ -1,4 +1,4 @@
-from typing import TypedDict, Union
+from typing import Union
 
 import re
 
@@ -11,27 +11,10 @@ from classes.wcag_types import (
     SufficientItem,
     Techniques,
 )
+from classes.chunk_types import BaseData, ParentData
 
 
 TechniqueItem = Union[SufficientItem, AdvisoryItem, FailureItem]
-
-
-class BaseData(TypedDict):
-    chunk_id: str
-    wcag_version: str
-    id: str
-    level: str
-    num: str
-    handle: str
-    type: str
-    description: str
-
-
-class ParentData(TypedDict):
-    parent_id: str
-    parent_type: str
-    parent_num: str
-    parent_title: str
 
 
 def clean_wcag_text(text: str) -> str:
@@ -144,7 +127,7 @@ def extract_testing_requirements(success_criterion: Successcriterion) -> list[st
         "must not",
     ]
 
-    # Simple extraction - you can enhance this
+    # Simple extraction
     for phrase in test_phrases:
         if phrase in description:
             # Find the sentence containing the phrase
