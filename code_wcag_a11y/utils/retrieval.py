@@ -1,6 +1,6 @@
 from typing import Optional
-from utils.formatter import clean_wcag_text
-from classes.wcag_types import Successcriterion, WCAGData
+from code_wcag_a11y.utils.formatter import clean_wcag_text
+from code_wcag_a11y.types.wcag_types import Successcriterion, WCAGData
 
 
 def get_chunk_by_id(chunks: list[dict], chunk_id: str) -> dict:

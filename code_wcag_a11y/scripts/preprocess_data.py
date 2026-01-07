@@ -1,17 +1,23 @@
+#!/usr/bin/env python3
+
 from pathlib import Path
 from typing import Any
 import json
 
-from classes.chunk_types import SuccessCriterionChunk, TermChunk, WcagVersion
-from classes.wcag_types import (
+from code_wcag_a11y.types.chunk_types import (
+    SuccessCriterionChunk,
+    TermChunk,
+    WcagVersion,
+)
+from code_wcag_a11y.types.wcag_types import (
     Guideline,
     Principle,
     Successcriterion,
     Term,
     WCAGData,
 )
-from utils.retrieval import find_related_requirements
-from utils.formatter import (
+from code_wcag_a11y.utils.retrieval import find_related_requirements
+from code_wcag_a11y.utils.formatter import (
     clean_wcag_text,
     get_base_data,
     get_parent_data,
@@ -19,14 +25,18 @@ from utils.formatter import (
     extract_testing_requirements,
 )
 
-BASE_DIR = Path(__file__).resolve().parent
-STORAGE_DIR = BASE_DIR / "storage"
-STORAGE_DIR.mkdir(exist_ok=True)
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = SCRIPT_DIR.parent
+DATA_DIR = PROJECT_ROOT / "data"
+RAW_DIR = DATA_DIR / "raw"
+PROCESSED_DIR = DATA_DIR / "processed"
+PROCESSED_DIR.mkdir(exist_ok=True)
 
 
 def get_wcag_data(version: WcagVersion = "2.2") -> WCAGData:
     """Load and parse WCAG JSON data."""
-    file_path = BASE_DIR / f"wcag-{version}.json"
+    file_path = RAW_DIR / f"wcag-{version}.json"
     with open(file_path, "r", encoding="utf-8") as f:
         data = json.load(f)
     return WCAGData.model_validate(data)
@@ -167,7 +177,7 @@ def preprocess_wcag_data(version: WcagVersion = "2.2") -> list[dict[str, Any]]:
 
 def save_preprocessed_data(chunks: list[dict[str, Any]], version: WcagVersion = "2.2"):
     """Save preprocessed data to a file."""
-    output_file = STORAGE_DIR / f"wcag_{version}_preprocessed.json"
+    output_file = PROCESSED_DIR / f"wcag_{version}_preprocessed.json"
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(chunks, f, indent=2, ensure_ascii=False)
     print(f"Saved {len(chunks)} chunks to {output_file}")
@@ -179,8 +189,8 @@ if __name__ == "__main__":
     # Preprocess both versions
     for version in ["2.1", "2.2"]:
         print(f"\nProcessing WCAG {version}...")
-        chunks = preprocess_wcag_data(version)  # type: ignore
-        save_preprocessed_data(chunks, version)  # type: ignore
+        chunks = preprocess_wcag_data(version)
+        save_preprocessed_data(chunks, version)
 
         # Print summary
         types = {}

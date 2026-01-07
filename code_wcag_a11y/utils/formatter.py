@@ -1,8 +1,7 @@
 from typing import Union
-
 import re
 
-from classes.wcag_types import (
+from code_wcag_a11y.types.wcag_types import (
     AdvisoryItem,
     FailureItem,
     Guideline,
@@ -11,7 +10,7 @@ from classes.wcag_types import (
     SufficientItem,
     Techniques,
 )
-from classes.chunk_types import BaseData, ParentData
+from code_wcag_a11y.types.chunk_types import BaseData, ParentData
 
 
 TechniqueItem = Union[SufficientItem, AdvisoryItem, FailureItem]
@@ -24,6 +23,9 @@ def clean_wcag_text(text: str) -> str:
 
     # Remove HTML tags
     text = re.sub(r"<[^>]*>", " ", text)
+
+    # Remove spaces before punctuation
+    text = re.sub(r"\s+([.,;:!?)\]}>])", r"\1", text)
 
     # Decode HTML entities
     import html
