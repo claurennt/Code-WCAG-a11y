@@ -7,7 +7,7 @@ WcagVersion = Literal["2.1", "2.2"]
 
 class BaseData(TypedDict):
     chunk_id: str
-    wcag_version: str
+    wcag_version: WcagVersion
     id: str
     level: str
     num: str
@@ -51,7 +51,7 @@ class PrincipleChunk(BaseData, total=True):
 class TermChunk(BaseData, total=True):
     chunk_id: str
     type: str
-    wcag_version: str
+    wcag_version: WcagVersion
     id: str
     term: str
     definition: str

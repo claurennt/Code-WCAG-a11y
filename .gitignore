@@ -1,5 +1,4 @@
 __pycache__
 .env
 *.egg-info/
-*.egg
 code_wcag_a11y/data/indices

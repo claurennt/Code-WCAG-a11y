@@ -15,6 +15,7 @@ from llama_index.llms.ollama import Ollama
 from llama_index.embeddings.ollama import OllamaEmbedding
 
 from code_wcag_a11y.globals import INDICES_DIR, PROCESSED_DIR
+from code_wcag_a11y.scripts.types.chunk_types import WcagVersion
 
 from .utils.index import create_document_metadata, create_embedding_text
 from code_wcag_a11y.utils.logger import logger
@@ -44,9 +45,9 @@ def load_existing_index(persist_dir: Path) -> VectorStoreIndex | None:
 def build_and_persist_index(
     data_file: Path,
     persist_dir: Path,
-    version: str,
+    wcag_version: WcagVersion,
 ) -> VectorStoreIndex:
-    logger.info(f"Creating new index for WCAG {version}...")
+    logger.info(f"Creating new index for WCAG {wcag_version}...")
 
     with open(data_file, "r", encoding="utf-8") as f:
         chunks = json.load(f)
@@ -75,18 +76,18 @@ def build_and_persist_index(
     return index
 
 
-def get_index(version: str = "2.2") -> VectorStoreIndex:
-    data_file = PROCESSED_DIR / f"wcag_{version}_preprocessed.json"
+def get_index(wcag_version: WcagVersion = "2.2") -> VectorStoreIndex:
+    data_file = PROCESSED_DIR / f"wcag-{wcag_version}_preprocessed.json"
     if not data_file.exists():
         raise FileNotFoundError(f"Processed data file not found: {data_file}")
 
-    persist_dir = INDICES_DIR / f"wcag_{version}" / "vector_storage"
+    persist_dir = INDICES_DIR / f"wcag-{wcag_version}" / "vector_storage"
     persist_dir.mkdir(parents=True, exist_ok=True)
 
     index = load_existing_index(persist_dir)
 
     if not index:
-        return build_and_persist_index(data_file, persist_dir, version)
+        return build_and_persist_index(data_file, persist_dir, wcag_version)
 
     return index
 
@@ -96,25 +97,25 @@ def build_all_indices():
     logger.info("Building WCAG indices...")
 
     available_versions = []
-    for version in ["2.1", "2.2"]:
-        data_file = PROCESSED_DIR / f"wcag_{version}_preprocessed.json"
+    for wcag_version in ["2.1", "2.2"]:
+        data_file = PROCESSED_DIR / f"wcag-{wcag_version}_preprocessed.json"
         if data_file.exists():
-            available_versions.append(version)
+            available_versions.append(wcag_version)
         else:
-            logger.warning(f"No processed data for WCAG {version}")
+            logger.warning(f"No processed data for WCAG {wcag_version}")
 
     if not available_versions:
         logger.error("No processed data files found")
         return None
 
     indices = {}
-    for version in available_versions:
+    for wcag_version in available_versions:
         try:
-            index = get_index(version=version)
-            indices[version] = index
-            logger.info(f"✓ WCAG {version} done")
+            index = get_index(wcag_version=wcag_version)
+            indices[wcag_version] = index
+            logger.info(f"✓ WCAG {wcag_version} done")
         except Exception as e:
-            logger.error(f"✗ WCAG {version} failed: {e}")
+            logger.error(f"✗ WCAG {wcag_version} failed: {e}")
 
     return indices
 

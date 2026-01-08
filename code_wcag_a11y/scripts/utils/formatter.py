@@ -10,7 +10,7 @@ from ..types.wcag_types import (
     SufficientItem,
     Techniques,
 )
-from ..types.chunk_types import BaseData, ParentData
+from ..types.chunk_types import BaseData, ParentData, WcagVersion
 
 
 TechniqueItem = Union[SufficientItem, AdvisoryItem, FailureItem]
@@ -41,11 +41,11 @@ def clean_wcag_text(text: str) -> str:
 def get_base_data(
     type: Union[Principle, Guideline, Successcriterion],
     type_name: str,
-    version: str,
+    wcag_version: WcagVersion,
 ) -> BaseData:
     return {
         "chunk_id": f"{type_name}_{type.id}",
-        "wcag_version": version,
+        "wcag_version": wcag_version,
         "id": type.id,
         "level": type.level if isinstance(type, Successcriterion) else type_name,
         "num": type.num,
