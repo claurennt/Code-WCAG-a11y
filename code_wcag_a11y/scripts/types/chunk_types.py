@@ -7,7 +7,7 @@ WcagVersion = Literal["2.1", "2.2"]
 
 class BaseData(TypedDict):
     chunk_id: str
-    wcag_version: str
+    wcag_version: WcagVersion
     id: str
     type: str
     level: str
