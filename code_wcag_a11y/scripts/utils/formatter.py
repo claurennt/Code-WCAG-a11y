@@ -1,7 +1,7 @@
 from typing import Union
 import re
 
-from code_wcag_a11y.types.wcag_types import (
+from ..types.wcag_types import (
     AdvisoryItem,
     FailureItem,
     Guideline,
@@ -10,7 +10,7 @@ from code_wcag_a11y.types.wcag_types import (
     SufficientItem,
     Techniques,
 )
-from code_wcag_a11y.types.chunk_types import BaseData, ParentData
+from ..types.chunk_types import BaseData, ParentData
 
 
 TechniqueItem = Union[SufficientItem, AdvisoryItem, FailureItem]

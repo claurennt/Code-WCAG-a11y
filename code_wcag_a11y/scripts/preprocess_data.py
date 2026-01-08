@@ -4,20 +4,22 @@ from pathlib import Path
 from typing import Any
 import json
 
-from code_wcag_a11y.types.chunk_types import (
+from code_wcag_a11y.globals import PROCESSED_DIR, RAW_DIR
+
+from .types.chunk_types import (
     SuccessCriterionChunk,
     TermChunk,
     WcagVersion,
 )
-from code_wcag_a11y.types.wcag_types import (
+from .types.wcag_types import (
     Guideline,
     Principle,
     Successcriterion,
     Term,
     WCAGData,
 )
-from code_wcag_a11y.utils.retrieval import find_related_requirements
-from code_wcag_a11y.utils.formatter import (
+from .utils.keyword_search import find_related_requirements
+from .utils.formatter import (
     clean_wcag_text,
     get_base_data,
     get_parent_data,
@@ -26,17 +28,11 @@ from code_wcag_a11y.utils.formatter import (
 )
 
 
-SCRIPT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCRIPT_DIR.parent
-DATA_DIR = PROJECT_ROOT / "data"
-RAW_DIR = DATA_DIR / "raw"
-PROCESSED_DIR = DATA_DIR / "processed"
-PROCESSED_DIR.mkdir(exist_ok=True)
-
-
 def get_wcag_data(version: WcagVersion = "2.2") -> WCAGData:
     """Load and parse WCAG JSON data."""
+
     file_path = RAW_DIR / f"wcag-{version}.json"
+    print(file_path)
     with open(file_path, "r", encoding="utf-8") as f:
         data = json.load(f)
     return WCAGData.model_validate(data)
@@ -190,6 +186,7 @@ if __name__ == "__main__":
     for version in ["2.1", "2.2"]:
         print(f"\nProcessing WCAG {version}...")
         chunks = preprocess_wcag_data(version)
+        PROCESSED_DIR.mkdir(exist_ok=True)
         save_preprocessed_data(chunks, version)
 
         # Print summary
