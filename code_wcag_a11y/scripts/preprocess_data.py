@@ -28,10 +28,10 @@ from .utils.formatter import (
 )
 
 
-def get_wcag_data(version: WcagVersion = "2.2") -> WCAGData:
+def get_wcag_data(wcag_version: WcagVersion = "2.2") -> WCAGData:
     """Load and parse WCAG JSON data."""
 
-    file_path = RAW_DIR / f"wcag-{version}.json"
+    file_path = RAW_DIR / f"wcag-{ wcag_version}.json"
     print(file_path)
     with open(file_path, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -42,13 +42,13 @@ def make_success_criteria_chunk(
     success_criteria: Successcriterion,
     guideline: Guideline,
     principle: Principle,
-    version: str,
+    wcag_version: WcagVersion,
     wcag_data: WCAGData,
 ) -> SuccessCriterionChunk:
     description = clean_wcag_text(success_criteria.content)
 
     return {
-        **get_base_data(success_criteria, "success_criterion", version),
+        **get_base_data(success_criteria, "success_criterion", wcag_version),
         # Content
         "description": description,
         # Hierarchy
@@ -109,13 +109,13 @@ def make_success_criteria_chunk(
     success_criteria: Successcriterion,
     guideline: Guideline,
     principle: Principle,
-    version: str,
+    wcag_version: WcagVersion,
     wcag_data: WCAGData,
 ):
     description = clean_wcag_text(success_criteria.content)
 
     return {
-        **get_base_data(success_criteria, "success_criterion", version),
+        **get_base_data(success_criteria, "success_criterion", wcag_version),
         # Content
         "description": description,
         # Hierarchy
@@ -129,7 +129,7 @@ def make_success_criteria_chunk(
         "compliance_level": success_criteria.level,
         "testing_requirements": extract_testing_requirements(success_criteria),
         # Metadata
-        "full_context": f"WCAG {version} Success Criterion {success_criteria.num} ({success_criteria.level}): {description}",
+        "full_context": f"WCAG {wcag_version} Success Criterion {success_criteria.num} ({success_criteria.level}): {description}",
         "related_requirements": find_related_requirements(success_criteria, wcag_data),
     }
 
@@ -149,31 +149,31 @@ def make_term_chunk(term: Term, version: str) -> TermChunk:
     }
 
 
-def preprocess_wcag_data(version: WcagVersion = "2.2") -> list[dict[str, Any]]:
-    wcag_data = get_wcag_data(version)
+def preprocess_wcag_data(wcag_version: WcagVersion = "2.2") -> list[dict[str, Any]]:
+    wcag_data = get_wcag_data(wcag_version)
     chunks = []
 
     for principle in wcag_data.principles:
-        chunks.append(make_principle_chunk(principle, version))
+        chunks.append(make_principle_chunk(principle, wcag_version))
         for guideline in principle.guidelines:
-            chunks.append(make_guideline_chunk(guideline, principle, version))
+            chunks.append(make_guideline_chunk(guideline, principle, wcag_version))
             for sc in guideline.successcriteria:
                 chunks.append(
                     make_success_criteria_chunk(
-                        sc, guideline, principle, version, wcag_data
+                        sc, guideline, principle, wcag_version, wcag_data
                     )
                 )
 
     # Add terms/definitions
     for term in wcag_data.terms:
-        chunks.append(make_term_chunk(term, version))
+        chunks.append(make_term_chunk(term, wcag_version))
 
     return chunks
 
 
 def save_preprocessed_data(chunks: list[dict[str, Any]], version: WcagVersion = "2.2"):
     """Save preprocessed data to a file."""
-    output_file = PROCESSED_DIR / f"wcag_{version}_preprocessed.json"
+    output_file = PROCESSED_DIR / f"wcag-{version}_preprocessed.json"
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(chunks, f, indent=2, ensure_ascii=False)
     print(f"Saved {len(chunks)} chunks to {output_file}")
@@ -183,11 +183,11 @@ def save_preprocessed_data(chunks: list[dict[str, Any]], version: WcagVersion = 
 # Main execution
 if __name__ == "__main__":
     # Preprocess both versions
-    for version in ["2.1", "2.2"]:
-        print(f"\nProcessing WCAG {version}...")
-        chunks = preprocess_wcag_data(version)
+    for wcag_version in ["2.1", "2.2"]:
+        print(f"\nProcessing WCAG {wcag_version}...")
+        chunks = preprocess_wcag_data(wcag_version)
         PROCESSED_DIR.mkdir(exist_ok=True)
-        save_preprocessed_data(chunks, version)
+        save_preprocessed_data(chunks, wcag_version)
 
         # Print summary
         types = {}
