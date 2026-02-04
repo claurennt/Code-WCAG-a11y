@@ -1,4 +1,4 @@
-from typing import TypedDict
+from typing import NotRequired, TypedDict
 from typing_extensions import Literal
 
 
@@ -9,11 +9,10 @@ class BaseData(TypedDict):
     chunk_id: str
     wcag_version: str
     id: str
-    level: str
-    num: str
-    handle: str
     type: str
-    description: str
+    level: str
+    num: NotRequired[str]
+    handle: NotRequired[str]
 
 
 class ParentData(TypedDict):
@@ -51,7 +50,7 @@ class PrincipleChunk(BaseData, total=True):
 class TermChunk(BaseData, total=True):
     chunk_id: str
     type: str
-    wcag_version: str
+    wcag_version: WcagVersion
     id: str
     term: str
     definition: str
