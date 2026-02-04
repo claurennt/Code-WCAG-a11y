@@ -1,4 +1,9 @@
 __pycache__
 .env
 *.egg-info/
-code_wcag_a11y/data/indices
+*.bin
+.DS_Store
+.vscode/
+chrome/
+.cache/
+.hf_cache/
