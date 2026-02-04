@@ -1,4 +1,4 @@
-from typing import TypedDict
+from typing import NotRequired, TypedDict
 from typing_extensions import Literal
 
 
@@ -7,13 +7,12 @@ WcagVersion = Literal["2.1", "2.2"]
 
 class BaseData(TypedDict):
     chunk_id: str
-    wcag_version: WcagVersion
+    wcag_version: str
     id: str
-    level: str
-    num: str
-    handle: str
     type: str
-    description: str
+    level: str
+    num: NotRequired[str]
+    handle: NotRequired[str]
 
 
 class ParentData(TypedDict):
