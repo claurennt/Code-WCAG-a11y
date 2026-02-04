@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 from typing import Any
 
 from code_wcag_a11y.scripts.types.chunk_types import WcagVersion
@@ -10,18 +11,39 @@ from code_wcag_a11y.scripts.utils.preprocess import (
     get_parent_data,
     make_sc_consolidated_text,
 )
+from code_wcag_a11y.scripts.types.wcag_types import WCAGData
 from code_wcag_a11y.utils.logger import logger
 from code_wcag_a11y.globals import PROCESSED_DIR, RAW_DIR
 
-from .types.wcag_types import WCAGData
+
+WCAG_VERSIONS = ["2.1", "2.2"]
 
 
 def get_wcag_data(wcag_version: WcagVersion = "2.2") -> WCAGData:
-    """Load and parse WCAG JSON data."""
+    """Load and parse WCAG JSON data.
 
-    file_path = RAW_DIR / f"wcag-{ wcag_version}.json"
-    with open(file_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
+    Args:
+        wcag_version: WCAG version to load (e.g., "2.1" or "2.2").
+
+    Returns:
+        Validated WCAGData object.
+
+    Raises:
+        FileNotFoundError: If the WCAG JSON file doesn't exist.
+        json.JSONDecodeError: If the file contains invalid JSON.
+    """
+
+    file_path = RAW_DIR / f"wcag-{wcag_version}.json"
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except FileNotFoundError:
+        logger.error(f"❌ WCAG file not found: {file_path}")
+        raise
+    except json.JSONDecodeError as e:
+        logger.error(f"❌ Invalid JSON in {file_path}: {e}")
+        raise
+
     return WCAGData.model_validate(data)
 
 
@@ -75,8 +97,18 @@ def preprocess_wcag_data(wcag_version: WcagVersion = "2.2") -> list[dict[str, An
     return chunks
 
 
-def save_preprocessed_data(chunks: list[dict[str, Any]], version: WcagVersion = "2.2"):
-    """Save preprocessed data to a file."""
+def save_preprocessed_data(
+    chunks: list[dict[str, Any]], version: WcagVersion = "2.2"
+) -> Path:
+    """Save preprocessed data to a file.
+
+    Args:
+        chunks: List of preprocessed chunk dictionaries.
+        version: WCAG version string.
+
+    Returns:
+        Path to the saved file.
+    """
     output_file = PROCESSED_DIR / f"wcag-{version}_preprocessed.json"
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(chunks, f, indent=2, ensure_ascii=False)
@@ -96,8 +128,8 @@ if __name__ == "__main__":
             # We use ignore_errors=True to handle cases where files are locked
             shutil.rmtree(PROCESSED_DIR, ignore_errors=True)
 
-    # Preprocess both versions
-    for wcag_version in ["2.1", "2.2"]:
+    # Preprocess all versions
+    for wcag_version in WCAG_VERSIONS:
         logger.debug(f"\nProcessing WCAG {wcag_version}...")
         chunks = preprocess_wcag_data(wcag_version)
         PROCESSED_DIR.mkdir(exist_ok=True)
