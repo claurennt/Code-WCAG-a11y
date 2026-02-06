@@ -10,7 +10,13 @@ def setup_delete_parser():
 
     parser.add_argument(
         "-d",
-        "--delete",
+        "--delete-processed",
+        action="store_true",
+    )
+
+    parser.add_argument(
+        "-d-benefits",
+        "--delete-benefits",
         action="store_true",
     )
 

@@ -12,14 +12,21 @@ from code_wcag_a11y.scripts.utils.preprocess import (
     make_sc_consolidated_text,
 )
 from code_wcag_a11y.scripts.types.wcag_types import WCAGData
+from code_wcag_a11y.scripts.utils.scrape_wcag_website import (
+    get_sc_url,
+    get_user_benefits_from_rule_page,
+    load_benefits_cache,
+    save_benefits_cache,
+)
 from code_wcag_a11y.utils.logger import logger
-from code_wcag_a11y.globals import PROCESSED_DIR, RAW_DIR
+from code_wcag_a11y.globals import BENEFITS_CACHE_FILE, PROCESSED_DIR, RAW_DIR
 
 
 WCAG_VERSIONS = ["2.1", "2.2"]
+UNDERSTANDING_DOCS_BASE_URL = "https://www.w3.org/WAI"
 
 
-def get_wcag_data(wcag_version: WcagVersion = "2.2") -> WCAGData:
+def get_wcag_data(wcag_version: WcagVersion = "2.1") -> WCAGData:
     """Load and parse WCAG JSON data.
 
     Args:
@@ -47,10 +54,11 @@ def get_wcag_data(wcag_version: WcagVersion = "2.2") -> WCAGData:
     return WCAGData.model_validate(data)
 
 
-def preprocess_wcag_data(wcag_version: WcagVersion = "2.2") -> list[dict[str, Any]]:
+def preprocess_wcag_data(
+    wcag_version: WcagVersion = "2.1", cache: dict[str, list[str]] = None
+) -> list[dict[str, Any]]:
     # 1. Load data using your Pydantic Model
     wcag_data = get_wcag_data(wcag_version)
-
     chunks = []
 
     for principle in wcag_data.principles:
@@ -73,17 +81,29 @@ def preprocess_wcag_data(wcag_version: WcagVersion = "2.2") -> list[dict[str, An
             )
 
             for sc in guideline.successcriteria:
-                # Success Criterion Chunk
-                sc_chunk = {
-                    **get_base_data(sc, "success_criterion", wcag_version),
-                    **get_parent_data("guideline", guideline),
-                    "text": make_sc_consolidated_text(sc, principle, guideline),
-                    "metadata": {
-                        "level": sc.level,
-                        "techniques": extract_techniques_summary(sc.techniques),
-                    },
-                }
-                chunks.append(sc_chunk)
+                # AUTO-DETECTION: If ID isn't in cache, we scrape it once.
+                if sc.id not in cache:
+                    logger.info(f"🌐 New SC found: {sc.id}. Scraping benefits...")
+                    sc_url = get_sc_url(
+                        UNDERSTANDING_DOCS_BASE_URL, sc.id, wcag_version
+                    )
+                    benefits = get_user_benefits_from_rule_page(sc_url)
+                    cache[sc.id] = benefits
+                else:
+                    benefits = cache[sc.id]
+                    sc_chunk = {
+                        **get_base_data(sc, "success_criterion", wcag_version),
+                        **get_parent_data("guideline", guideline),
+                        "text": make_sc_consolidated_text(
+                            sc, principle, guideline, benefits
+                        ),
+                        "metadata": {
+                            "level": sc.level,
+                            "techniques": extract_techniques_summary(sc.techniques),
+                        },
+                    }
+
+                    chunks.append(sc_chunk)
 
     # Definitions
     for term in wcag_data.terms:
@@ -120,27 +140,39 @@ def save_preprocessed_data(
 if __name__ == "__main__":
     args = setup_delete_parser()
 
-    if args.delete:
-        if PROCESSED_DIR.exists():
-            import shutil
+    # 1. Handle Deletion Flags
+    if args.delete_processed and PROCESSED_DIR.exists():
 
-            logger.debug(f"Deleting all existing processed data in {PROCESSED_DIR}...")
-            # We use ignore_errors=True to handle cases where files are locked
-            shutil.rmtree(PROCESSED_DIR, ignore_errors=True)
+        for file in PROCESSED_DIR.glob("*.json"):
+            file.unlink()
+        logger.info(f"🗑️ Deleted existing processed files")
 
-    # Preprocess all versions
-    for wcag_version in WCAG_VERSIONS:
-        logger.debug(f"\nProcessing WCAG {wcag_version}...")
-        chunks = preprocess_wcag_data(wcag_version)
-        PROCESSED_DIR.mkdir(exist_ok=True)
-        save_preprocessed_data(chunks, wcag_version)
+    if args.delete_benefits and BENEFITS_CACHE_FILE.exists():
+        BENEFITS_CACHE_FILE.unlink()
+        logger.info(f"🗑️ Deleted benefits cache: {BENEFITS_CACHE_FILE}")
 
-        # Print summary
-        types = {}
-        for chunk in chunks:
-            chunk_type = chunk.get("type", "unknown")
-            types[chunk_type] = types.get(chunk_type, 0) + 1
+    # Ensure processed directory exists for output
+    PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
 
-        logger.info(f"  Total chunks: {len(chunks)}")
-        for chunk_type, count in types.items():
-            logger.info(f"{chunk_type}: {count}")
+    # 2. Load the cache (will be empty if deleted or first run)
+    benefits_cache = load_benefits_cache()
+    initial_cache_size = len(benefits_cache)
+
+    # 3. Process Versions
+    # - Use cache if available (satisfies requirement 4)
+    # - Scrape and add to cache if missing/deleted
+    for version in WCAG_VERSIONS:
+        logger.info(f"🚀 Processing WCAG {version}...")
+        chunks = preprocess_wcag_data(version, benefits_cache)
+        save_preprocessed_data(chunks, version)
+
+    # 4. Save the cache back to disk (Updated with new scrapes)
+    if len(benefits_cache) > initial_cache_size:
+        save_benefits_cache(benefits_cache)
+        logger.info(
+            f"💾 Cache updated: {initial_cache_size} -> {len(benefits_cache)} entries."
+        )
+    else:
+        logger.info(
+            f"✅ No new scrapes needed. Used existing cache of {len(benefits_cache)} entries."
+        )
