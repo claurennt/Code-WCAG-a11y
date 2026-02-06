@@ -122,21 +122,28 @@ def format_technique_item(item: TechniqueItem) -> list[str]:
 
 
 def make_sc_consolidated_text(
-    sc: Successcriterion, principle: Principle, guideline: Guideline
+    sc: Successcriterion,
+    principle: Principle,
+    guideline: Guideline,
+    benefits: list[str] = None,
 ) -> str:
-    """
-    Internal helper to create a rich 'text' field for RAG.
-    This ensures the embedding captures the Rule + Pass/Fail criteria.
-    """
     tech_summary = extract_techniques_summary(sc.techniques)
 
     body = [
         f"WCAG Success Criterion {sc.num}: {sc.handle} (Level {sc.level})",
         f"Principle: {principle.handle} / Guideline: {guideline.handle}",
         f"Requirement: {clean_wcag_text(sc.content)}",
-        "\nSufficient Techniques (Ways to Pass):",
-        "\n".join(tech_summary.get("sufficient", [])),
-        "\nCommon Failures (QA Checkpoints):",
-        "\n".join(tech_summary.get("failure", [])),
     ]
+    if benefits:
+        body.append("\nUser Benefits (Who this helps):")
+        body.append("\n".join([f"- {b}" for b in benefits]))
+
+    body.extend(
+        [
+            "\nSufficient Techniques (Ways to Pass):",
+            "\n".join(tech_summary.get("sufficient", [])),
+            "\nCommon Failures (QA Checkpoints):",
+            "\n".join(tech_summary.get("failure", [])),
+        ]
+    )
     return "\n".join(filter(None, body))

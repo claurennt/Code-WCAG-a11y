@@ -1,0 +1,388 @@
+{
+  "non-text-content": [
+    "This success criterion helps people who have difficulty perceiving visual content. Assistive technology can read text aloud, present it visually, or convert it to braille.",
+    "Text alternatives may help some people who have difficulty understanding the meaning of photographs, drawings, and other images (e.g., line drawings, graphic designs, paintings, three-dimensional representations), graphs, charts, animations, etc.",
+    "People who are deaf, are hard of hearing, or who are having trouble understanding audio information for any reason can read the text presentation. Research is ongoing regarding automatic translation of text into sign language.",
+    "People who are deaf-blind can read the text in braille.",
+    "Additionally, text alternatives support the ability to search for non-text content and to repurpose content in a variety of ways."
+  ],
+  "audio-only-and-video-only-prerecorded": [
+    "This success criterion helps people who have difficulty perceiving visual content. Assistive technology can read text alternatives aloud, present them visually, or convert them to braille.",
+    "Alternatives for timed-based media that are text based may help some people who have difficulty understanding the meaning of prerecorded video content.",
+    "People who are deaf, are hard of hearing, or who are having trouble understanding audio information for any reason can read the text presentation. Research is ongoing regarding automatic translation of text into sign language.",
+    "People who are deaf-blind can read the text in braille.",
+    "Additionally, text supports the ability to search for non-text content and to repurpose content in a variety of ways."
+  ],
+  "captions-prerecorded": [
+    "People who are deaf or have a hearing loss can access the auditory information in the synchronized media content through captions."
+  ],
+  "audio-description-or-media-alternative-prerecorded": [
+    "This success criterion may help some people who have difficulty watching video or other synchronized media content, including people who have difficulty perceiving or understanding moving images."
+  ],
+  "captions-live": [
+    "People who are deaf or have a hearing loss can access the auditory information in the synchronized media content through captions."
+  ],
+  "audio-description-prerecorded": [
+    "People who are blind or have low vision as well as those with cognitive limitations who have difficulty interpreting visually what is happening benefit from audio description of visual information."
+  ],
+  "sign-language-prerecorded": [
+    "People whose human language is a sign language sometimes have limited reading ability. These individuals may not be able to read and comprehend the captions and thus require a sign language interpretation to gain access to the synchronized media content."
+  ],
+  "extended-audio-description-prerecorded": [
+    "People who are blind, people with low vision who cannot see the screen, as well as those with cognitive limitations who have difficulty interpreting visually what is happening, often use audio description of the visual information. However, if there is too much dialogue the audio description is insufficient. Extended audio description can provide the additional information needed to understand the video."
+  ],
+  "media-alternative-prerecorded": [
+    "People who are deaf-blind, who cannot see well or at all, and who also cannot hear well or at all can get access to information in audio-visual presentations."
+  ],
+  "audio-only-live": [],
+  "info-and-relationships": [
+    "This success criterion helps people with different disabilities by allowing user agents to adapt content according to the needs of individual users.",
+    "Users who are blind (using a screen reader) benefit when information conveyed through color is also available in text (including text alternatives for images that use color to convey information).",
+    "Users who are deaf-blind using braille (text) refreshable displays may be unable to access color-dependent information."
+  ],
+  "meaningful-sequence": [
+    "This success criterion may help people who rely on assistive technologies that read content aloud. The meaning evident in the sequencing of the information in the default presentation will be the same when the content is presented in spoken form."
+  ],
+  "sensory-characteristics": [
+    "People who are blind and people who have low vision may not be able to understand instructions if they rely only on a description of the shape and/or location of content. Providing additional information in any instructions other than shape and/or location will allow users to understand the instructions even if they cannot perceive shape and/or location."
+  ],
+  "orientation": [
+    "Users with dexterity impairments, who have a mounted device will be able to use the content in their fixed orientation.",
+    "Users with low-vision will be able to view content in the orientation that works best for them, for example to increase the text size by viewing content in landscape."
+  ],
+  "identify-input-purpose": [
+    "People with language and memory related disabilities or disabilities that affects executive function and decision-making benefit from the browser auto-filling personal information (such as name or address) when the autocomplete attribute is used to meet this Success Criterion, which means information does not need to be remembered by the user.",
+    "People with cerebral palsy, stroke, head injury, motor neuron disease or learning disability sometimes prefer images for communication. They can employ assistive technology which adds icons to input fields to communicate the purpose of the fields visually.",
+    "People with motor impairments also benefit from reducing the need for manual input when filling out forms."
+  ],
+  "identify-purpose": [
+    "Memory",
+    "Focus and attention",
+    "Language-related",
+    "Executive function and decision making.",
+    "Symbols and graphics with which users are familiar",
+    "Fewer features and less cognitive overload",
+    "Keyboard shortcuts"
+  ],
+  "use-of-color": [
+    "Users with partial sight often experience limited color vision.",
+    "Some older users may not be able to see color well.",
+    "Users with color vision deficiency who cannot distinguish between certain colors benefit when information conveyed by color is available in other visual ways.",
+    "People using limited color monochrome displays may be unable to access color-dependent information.",
+    "Users who have problems distinguishing between colors can look or listen for text cues."
+  ],
+  "audio-control": [
+    "Individuals who use screen reading technologies can hear the screen reader without other sounds playing. This is especially important for those who are hard of hearing and for those whose screen readers use the system volume (so they cannot turn sound down and screen reader up).",
+    "This success criterion also benefits people who have difficulty focusing on visual content (including text) when audio is playing."
+  ],
+  "contrast-minimum": [
+    "People with low vision often have difficulty reading text that does not contrast with its background. This can be exacerbated if the person has a color vision deficiency that lowers the contrast even further. Providing a minimum luminance contrast ratio between the text and its background can make the text more readable even if the person does not see the full range of colors. It also works for the rare individuals who see no color."
+  ],
+  "resize-text": [
+    "This success criterion helps people with low vision by letting them increase text size in content so that they can read it."
+  ],
+  "images-of-text": [
+    "People with low vision (who may have trouble reading the text with the authored font family, size and/or color).",
+    "People with visual tracking problems (who may have trouble reading the text with the authored line spacing and/or alignment).",
+    "People with cognitive disabilities that affect reading."
+  ],
+  "contrast-enhanced": [
+    "People with low vision often have difficulty reading text that does not contrast with its background. This can be exacerbated if the person has a color vision deficiency that lowers the contrast even further. Providing a minimum luminance contrast ratio between the text and its background can make the text more readable even if the person does not see the full range of colors. It also works for the rare individuals who see no color."
+  ],
+  "low-or-no-background-audio": [
+    "People who are hard of hearing often have great difficulty separating speech from background sound."
+  ],
+  "visual-presentation": [
+    "People with some cognitive disabilities can read text better when they select their own foreground and background color combinations.",
+    "People with some cognitive disabilities can track their locations more easily when blocks of text are narrow and when they can configure the amount of space between lines and paragraphs.",
+    "People with some cognitive disabilities can read text more easily when the spacing between words is regular."
+  ],
+  "images-of-text-no-exception": [
+    "People with low vision (who may have trouble reading the text with the authored font family, size and/or color).",
+    "People with visual tracking problems (who may have trouble reading the text with the authored line spacing and/or alignment).",
+    "People with cognitive disabilities that affect reading."
+  ],
+  "reflow": [],
+  "non-text-contrast": [],
+  "text-spacing": [
+    "People with low vision who require increased space between lines, words, and letters are able to read text.",
+    "People with dyslexia may increase space between lines, words, and letters to increase reading speed.",
+    "Although not required by this SC, white space between blocks of text can help people with cognitive disabilities discern sections and call-out boxes."
+  ],
+  "content-on-hover-or-focus": [
+    "Users with low vision who view content under magnification will be better able to view content on hover or focus without reducing their desired magnification.",
+    "Users who increase the size of mouse cursors via platform settings or assistive technology will be able to employ a technique to view obscured content on hover.",
+    "Users with low vision or cognitive disabilities will have adequate time to perceive additional content appearing on hover or focus and to view the trigger content with less distraction.",
+    "users with low pointer accuracy will be able to more easily dismiss unintentionally-triggered additional content"
+  ],
+  "keyboard": [
+    "People who are blind (who cannot use devices such as mice that require eye-hand coordination)",
+    "People with low vision (who may have trouble finding or tracking a pointer indicator on screen)",
+    "Some people with hand tremors find using a mouse very difficult and therefore usually use a keyboard"
+  ],
+  "no-keyboard-trap": [
+    "People who rely on a keyboard or keyboard interface to use the web including people who are blind and people with physical disabilities."
+  ],
+  "keyboard-no-exception": [],
+  "character-key-shortcuts": [
+    "Speech users will be able to turn off single-key shortcuts so they can avoid accidentally firing batches of them at once. This will allow speech users to make full use of programs that offer single-key shortcuts to keyboard users.",
+    "Keyboard-only users who have dexterity challenges can also be prone to accidentally hitting keys. Those users would be able to avoid problematic single character shortcuts by turning them off or modifying them to include at least one non-character key.",
+    "Allowing all shortcut keys to be remapped can help users with some cognitive disabilities, since the same shortcuts can be assigned to perform the same actions across different applications."
+  ],
+  "timing-adjustable": [
+    "People with physical disabilities often need more time to react, to type and to complete activities. People with low vision need more time to locate things on screen and to read. People who are blind and using screen readers may need more time to understand screen layouts, to find information and to operate controls. People who have cognitive or language limitations need more time to read and to understand. People who are deaf and communicate in sign language may need more time to read information printed in text (which may be a second language for some).",
+    "In circumstances where a sign-language interpreter may be relating audio content to a user who is deaf, control over time limits is also important.",
+    "People with reading disabilities, cognitive limitations, and learning disabilities who may need more time to read or comprehend information can have additional time to read the information by pausing the content."
+  ],
+  "pause-stop-hide": [
+    "Providing content that stops blinking after five seconds or providing a mechanism for users to stop blinking content allows people with certain disabilities to interact with the web page.",
+    "One use of content that blinks is to draw the visitor's attention to that content. Although this is an effective technique for all users with vision, it can be a problem for some users if it persists. For certain groups, including people with low literacy, reading and intellectual disabilities, and people with attention deficit disorders, content that blinks may make it difficult or even impossible to interact with the rest of the web page."
+  ],
+  "no-timing": [
+    "People with physical disabilities often need more time to react, to type and to complete activities. People with low vision need more time to locate things on screen and to read. People who are blind and using screen readers may need more time to understand screen layouts, to find information and to operate controls. People who have cognitive or language limitations need more time to read and to understand. People who are deaf and communicate in sign language may need more time to read information printed in text (which may be a second language for some).",
+    "In circumstances where a sign-language interpreter may be relating audio content to a user who is deaf, control over time limits is also important."
+  ],
+  "interruptions": [
+    "Individuals with attention deficit disorders can focus on content without distraction.",
+    "Individuals with low vision or who use screen readers will not have content updated while they are viewing it (which can lead to discontinuity and misunderstanding if they start reading in one topic and finish in another)."
+  ],
+  "re-authenticating": [
+    "This success criterion benefits people who may require additional time to complete an activity. People with cognitive limitations may read slowly and require additional time to read and respond to a questionnaire. Users interacting via a screen reader may need extra time to navigate and complete a complicated form. A person with motor impairments or who navigates with an alternative input device may require additional time to navigate through or complete input within a form."
+  ],
+  "timeouts": [
+    "language-related disabilities;",
+    "memory-related disabilities;",
+    "focus-and-attention-related disabilities; and",
+    "disabilities that affect executive function and decision making."
+  ],
+  "three-flashes-or-below-threshold": [
+    "Individuals who have seizures when viewing flashing material will be able to view all of the material on a site without having a seizure and without having to miss the full experience of the content by being limited to text alternatives. This includes people with photosensitive epilepsy as well as other photosensitive seizure disorders."
+  ],
+  "three-flashes": [
+    "Individuals who have seizures when viewing flashing material will be able to view all of the material on a site without having a seizure and without having to miss the full experience of the content by being limited to text alternatives. This includes people with photosensitive epilepsy as well as other photosensitive seizure disorders."
+  ],
+  "animation-from-interactions": [
+    "Vestibular Disorder People with vestibular disorders need control over movement triggered by interactions. Non-essential movement can trigger vestibular disorder reactions. Vestibular (inner ear) disorder reactions include distraction, dizziness, headaches and nausea. Persona Quote: \"Stop that extra movement! You are making me so dizzy I cannot concentrate. Now I have to turn off my computer and go lie down.\"",
+    "People with vestibular disorders need control over movement triggered by interactions. Non-essential movement can trigger vestibular disorder reactions. Vestibular (inner ear) disorder reactions include distraction, dizziness, headaches and nausea.",
+    "Persona Quote: \"Stop that extra movement! You are making me so dizzy I cannot concentrate. Now I have to turn off my computer and go lie down.\""
+  ],
+  "bypass-blocks": [
+    "Screen reader users who visit several pages on the same site can avoid having to hear all header content and dozens of navigation links on every page before the main content is spoken.",
+    "People who use only the keyboard or a keyboard interface can reach content with fewer keystrokes. Otherwise, they might have to make dozens of keystrokes before reaching a link in the main content area. This can take a long time and may cause severe physical pain for some users.",
+    "People who use screen magnifiers do not have to search through the same header content or other blocks of information to find where the main content begins each time they enter a new page.",
+    "People with cognitive limitations as well as people who use screen readers may benefit when links are grouped into lists"
+  ],
+  "page-titled": [
+    "This criterion benefits all users in allowing users to quickly and easily identify whether the information contained in the web page is relevant to their needs.",
+    "People with visual disabilities will benefit from being able to differentiate content when multiple web pages are open.",
+    "People with cognitive disabilities, limited short-term memory and reading disabilities also benefit from the ability to identify content by its title.",
+    "This criterion also benefits people with severe mobility impairments whose mode of operation relies on audio when navigating between web pages."
+  ],
+  "focus-order": [
+    "People with mobility impairments who must rely on keyboard access for operating a page benefit from a logical, usable focus order.",
+    "People with disabilities that make reading difficult can become disoriented when tabbing takes focus someplace unexpected. They benefit from a logical focus order.",
+    "People with visual impairments can become disoriented when tabbing takes focus someplace unexpected or when they cannot easily find the content surrounding an interactive element.",
+    "Only a small portion of the page may be visible to an individual using a screen magnifier at a high level of magnification. Such a user may interpret a field in the wrong context if the focus order is not logical."
+  ],
+  "link-purpose-in-context": [
+    "This success criterion helps people with motion impairment by letting them skip links that they are not interested in, avoiding the keystrokes needed to visit the referenced content and then returning to the current content.",
+    "People with cognitive limitations will not become disoriented by multiple means of navigation to and from content they are not interested in.",
+    "People with visual disabilities will be able to determine the purpose of a link by exploring the link's context."
+  ],
+  "multiple-ways": [
+    "Providing an opportunity to navigate sites in more than one manner can help people find information faster. Users with visual impairments may find it easier to navigate to the correct part of the site by using a search, rather than scrolling through a large navigation bar using a screen magnifier or screen reader. A person with cognitive disabilities may prefer a table of contents or site map that provides an overview of the site rather than reading and traversing through several web pages. Some users may prefer to explore the site in a sequential manner, moving from web page to web page in order to best understand the concepts and layout.",
+    "Individuals with cognitive limitations may find it easier to use search features than to use a hierarchical navigation scheme that may be difficult to understand."
+  ],
+  "headings-and-labels": [
+    "Descriptive headings are especially helpful for users who have disabilities that make reading slow and for people with limited short-term memory. These people benefit when section titles make it possible to predict what each section contains.",
+    "Form input controls with labels that clearly and accurately describe the content that is expected to be entered helps users know how to successfully complete the form.",
+    "When headings and labels are also correctly marked up and identified in accordance with 1.3.1: Info and Relationships , this success criterion helps people who use screen readers by ensuring that labels and headings are clearer when presented in a different format — for example, in an automatically generated list of headings, a table of contents, or when jumping from heading to heading within a page."
+  ],
+  "focus-visible": [
+    "This success criterion helps anyone who relies on the keyboard to operate the page, by letting them visually determine the component on which keyboard operations will interact at any point in time.",
+    "People with attention limitations, short term memory limitations, or limitations in executive processes benefit by being able to discover where the focus is located."
+  ],
+  "location": [
+    "This success criterion is helpful for people with a short attention span who may become confused when following a long series of navigation steps to a web page. It is also helpful when a user follows a link directly to a page deep within a set of web pages and needs to navigate that website to understand the content of that page or to find more related information."
+  ],
+  "link-purpose-link-only": [
+    "This success criterion helps people with motion impairment by letting them skip web pages that they are not interested in, avoiding the keystrokes needed to visit the referenced content and then return to the current content.",
+    "People with cognitive limitations will not become disoriented by extra navigation to and from content they are not interested in.",
+    "People with visual disabilities will benefit from not losing their place in the content when they return to the original page. The screen reader's list of links is more useful for finding information because the target of the links are described."
+  ],
+  "section-headings": [
+    "People who are blind will know when they have moved from one section of a web page to another and will know the purpose of each section.",
+    "People with some learning disabilities will be able to use the headings to understand the overall organization of the page content more easily.",
+    "People who navigate content by keyboard will be able to jump the focus from heading to heading, enabling them to find quickly content of interest.",
+    "In pages where content in part of the page updates, headings can be used to quickly access updated content."
+  ],
+  "pointer-gestures": [
+    "Users who cannot (accurately) perform path-based pointer gestures - on a touchscreen, or with a mouse - will have alternative means for operating the content.",
+    "Users who cannot perform multi-pointer gestures on a touchscreen (for instance, because they are operating the touchscreen with an alternative input such as a head pointer) will have a single-pointer alternative for operating the content.",
+    "Users who may not understand the custom gesture interaction intended by the author will be able to rely on simple, frequently used gestures to interact. This can be especially beneficial for users with cognitive or learning disabilities."
+  ],
+  "pointer-cancellation": [
+    "Makes it easier for all users to recover from hitting the wrong target.",
+    "Helps people with visual disabilities, cognitive limitations, and motor impairments by reducing the chance that a control will be accidentally activated or an action will occur unexpectedly, and also ensures that where complex controls are activated, a means of Undoing or Aborting the action is available.",
+    "Individuals who are unable to detect changes of context are less likely to become disoriented while navigating a site."
+  ],
+  "label-in-name": [
+    "Speech-input users can directly activate controls on a page with fewer surprising changes of focus.",
+    "Text-to-speech users will have a better experience because the labels that they hear match the visible text labels that they see on the screen."
+  ],
+  "motion-actuation": [
+    "This success criterion helps people who may be unable to perform particular motions (such as tilting, shaking, or gesturing) because the device may be mounted or users may be physically unable to perform the necessary movement. This success criterion ensures that users can still operate all functionality by other means such as touch or via assistive technologies.",
+    "Other users will benefit in situations where they are unable to move their devices."
+  ],
+  "target-size": [
+    "Users who use a mobile device where touch screen is the primary mode of interaction",
+    "Users with mobility impairments, such as hand tremors",
+    "Users who use a mobile device in environments where they are exposed to shaking such as public transportation",
+    "Users who find fine motor movements difficult",
+    "Users who access a device using one hand",
+    "Users with large fingers, or who are operating the device with only a part of their finger or knuckle",
+    "Users who have low vision may better see the target"
+  ],
+  "concurrent-input-mechanisms": [
+    "Users can interact with web content with whichever input mechanism is preferred and available to them.",
+    "Users may switch between input mechanisms when they desire or the circumstances require it.",
+    "Users are allowed to add and remove input mechanisms at any point, where supported by the operating system."
+  ],
+  "language-of-page": [
+    "people who use screen readers or other technologies that convert text into synthetic speech;",
+    "people who find it difficult to read written material with fluency and accuracy, such as recognizing characters and alphabets or decoding words;",
+    "people with certain cognitive, language and learning disabilities who use text-to-speech software",
+    "people who rely on captions for synchronized media."
+  ],
+  "language-of-parts": [
+    "people who use screen readers or other technologies that convert text into synthetic speech;",
+    "people who find it difficult to read written material with fluency and accuracy, such as recognizing characters and alphabets, decoding words, and understanding words and phrases;",
+    "people with certain cognitive, language and learning disabilities who use text-to-speech software;",
+    "people who rely on captions to recognize language changes in the soundtrack of synchronized media content."
+  ],
+  "unusual-words": [
+    "have difficulty decoding words",
+    "have difficulty understanding words and phrases",
+    "have difficulty using context to aid understanding",
+    "lose context when zoomed-in with a screen magnifier"
+  ],
+  "abbreviations": [
+    "have difficulty decoding words;",
+    "rely on screen magnifiers (magnification may reduce contextual cues);",
+    "have limited memory;",
+    "have difficulty using context to aid understanding.",
+    "Some abbreviations do not look like normal words and cannot be pronounced according to the usual rules of the language. For example, the English word \"room\" is abbreviated as \"rm,\" which does not correspond to any English word or phoneme. The user has to know that \"rm\" is an abbreviation for the word \"room\" in order to say it correctly.",
+    "Sometimes, the same abbreviation means different things in different contexts. For example, in the English sentence \"Dr. Johnson lives on Boswell Dr.,\" the first \"Dr.\" is an abbreviation for \"Doctor\" and the second instance is an abbreviation for the word \"Drive\" (a word that means \"street\"). Users must be able to understand the context in order to know what the abbreviations mean.",
+    "Some acronyms spell common words but are used in different ways. For example, \"JAWS\" is an acronym for a screen reader whose full name is \"Job Access with Speech.\" It is also a common English word referring to the part of the mouth that holds the teeth. The acronym is used differently than the common word.",
+    "Some acronyms sound like common words but are spelled differently. For example, the acronym for Synchronized Multimedia Integration Language, S M I L, is pronounced like the English word \"smile.\"",
+    "Lose context when zoomed-in with a screen magnifier"
+  ],
+  "reading-level": [
+    "Have difficulty comprehending and interpreting written language (e.g., articles, instructions, or newspapers in text or braille), for the purpose of obtaining general knowledge or specific information"
+  ],
+  "pronunciation": [
+    "have difficulty decoding words",
+    "have difficulty using context to aid understanding",
+    "use technologies that read the words aloud"
+  ],
+  "on-focus": [
+    "This success criterion helps people with visual disabilities, cognitive limitations, and motor impairments by reducing the chance that a change of context will occur unexpectedly."
+  ],
+  "on-input": [
+    "This success criterion helps users with disabilities by making interactive content more predictable. Unexpected changes of context can be so disorienting for users with visual disabilities or cognitive limitations that they are unable to use the content.",
+    "Individuals who are unable to detect changes of context are less likely to become disoriented while navigating a site. For example: Individuals who are blind or have low vision may have difficulty knowing when a visual context change has occurred, such as a new window popping up. In this case, warning users of context changes in advance minimizes confusion when the user discovers that the back button no longer behaves as expected.",
+    "Individuals who are blind or have low vision may have difficulty knowing when a visual context change has occurred, such as a new window popping up. In this case, warning users of context changes in advance minimizes confusion when the user discovers that the back button no longer behaves as expected.",
+    "Some individuals with low vision, with reading and intellectual disabilities, and others who have difficulty interpreting visual cues may benefit from additional cues in order to detect changes of context."
+  ],
+  "consistent-navigation": [
+    "Ensuring that repeated components occur in the same order on each page of a site helps users become comfortable that they will able to predict where they can find things on each page. This helps users with cognitive limitations , users with low vision , users with intellectual disabilities , and also those who are blind ."
+  ],
+  "consistent-identification": [
+    "People who learn functionality on one page on a site can find the desired functions on other pages if they are present.",
+    "When non-text content is used in a consistent way to identify components with the same functionality, people with difficulty reading text or detecting text alternatives can interact with the web without depending on text alternatives.",
+    "People who depend on text alternatives can have a more predictable experience. They can also search for the component if it has a consistent label on different pages."
+  ],
+  "change-on-request": [
+    "Individuals who are unable to detect changes of context or who may not realize that the context has changed are less likely to become disoriented if they initiate the change themselves. For example: individuals who are blind or have low vision may have difficulty knowing when a visual context change has occurred, such as a new window popping up. In this case, warning users of context changes in advance minimizes confusion when the user discovers that the back button no longer behaves as expected.",
+    "individuals who are blind or have low vision may have difficulty knowing when a visual context change has occurred, such as a new window popping up. In this case, warning users of context changes in advance minimizes confusion when the user discovers that the back button no longer behaves as expected.",
+    "Some individuals with low vision, with reading and intellectual disabilities, and who have difficulty interpreting visual cues may benefit from additional cues in order to detect changes of context.",
+    "People with certain cognitive limitations do not get confused if automatic redirects are performed by the web server instead of the browser."
+  ],
+  "error-identification": [
+    "Providing information about input errors in text allows users who are blind, have low vision, or have color vision deficiency to perceive the fact that an error occurred.",
+    "This success criterion may help people with cognitive, language, and learning disabilities who have difficulty understanding the specific reason why a form submission failed (in cases where this is not already made obvious by the nature of the form)."
+  ],
+  "labels-or-instructions": [
+    "Providing labels and instructions (including examples of expected data formats) helps all users — but particularly those with cognitive, language, and learning disabilities — to enter information correctly.",
+    "Providing labels and instructions (including identification of required fields) can prevent users from making incomplete or incorrect form submissions, which prevents users from having to navigate once more through a page/form in order to fix submission errors."
+  ],
+  "error-suggestion": [
+    "Providing information about how to correct input errors allows users who have learning disabilities to fill in a form successfully.",
+    "Users who are blind or have impaired vision understand more easily the nature of the input error and how to correct it.",
+    "People with motion impairment can reduce the number of times they need to change an input value."
+  ],
+  "error-prevention-legal-financial-data": [
+    "Providing safeguards to avoid serious consequences resulting from mistakes helps users with all disabilities who may be more likely to make mistakes."
+  ],
+  "help": [
+    "Assistance for text input helps individuals with writing disabilities and people with reading and intellectual disabilities who often have difficulty writing text in forms or other places that need text input.",
+    "Additionally, these kinds of assistance help people who are aging and have the same difficulty in text input and/or mouse operation."
+  ],
+  "error-prevention-all": [
+    "Providing safeguards to avoid consequences resulting from mistakes helps users with all disabilities who may be more likely to make mistakes."
+  ],
+  "parsing": [
+    "Ensuring that web pages have complete start and end tags and are nested according to specification helps ensure that assistive technologies can parse the content accurately and without crashing."
+  ],
+  "name-role-value": [
+    "Providing role, state, and value information on all user interface components enables compatibility with assistive technology, such as screen readers, screen magnifiers, and speech recognition software, used by people with disabilities."
+  ],
+  "status-messages": [
+    "When appropriate roles or properties are assigned to status messages, the new content is spoken by screen readers in such a way as to assist blind and low vision users. Most sighted users can observe text peripherally added to the viewport. Such content provides additional information without affecting the user's current point of regard. The ability of an assistive technology to announce such new important text content allows more users to benefit from an awareness of the information in an equivalent manner.",
+    "Assigning proper roles or properties to status messages provides possible future uses and personalization opportunities, such as the potential to be exploited by assistive technologies created for users with some cognitive disabilities. Where page authors elect to design additions to the screen which do not change the user's context (i.e., take focus), the information is arguably of less importance than something presented using a modal dialog, which must be acknowledged by the user. As such, depending on the user's preferences, an assistive technology may choose to delay, suppress, or transform such messages so a user is not unnecessarily interrupted; or conversely the assistive technology may highlight such messages where the user finds it optimal to do so."
+  ],
+  "focus-not-obscured-minimum": [
+    "Sighted users who rely on a keyboard interface to operate the page will be able to see the component which gets keyboard focus. Such users include those who rely on a keyboard or on devices which use the keyboard interface, including speech input, sip-and-puff software, onscreen keyboards, scanning software, and a variety of assistive technologies and alternate keyboards.",
+    "People with limited or low vision, who may primarily user a pointer for screen orientation and repositioning, nonetheless benefit from a visible indication of the current point of keyboard interaction, especially where magnification reduces the overall viewing portion of the screen.",
+    "People with attention limitations, short term memory limitations, or limitations in executive processes benefit by being able to discover where the focus is located."
+  ],
+  "focus-not-obscured-enhanced": [
+    "Sighted users who rely on a keyboard interface to operate the page will be able to see the component which gets keyboard focus. Such users include those who rely on devices which use the keyboard interface, including speech input, sip-and-puff software, on-screen keyboards, scanning software, and a variety of assistive technologies and alternate keyboards.",
+    "People with limited or low vision but who rely upon a pointing device (for viewport orientation and repositioning) benefit from a clearly visible indication of the current point of keyboard interaction, especially where magnification reduces the overall useable portion of content.",
+    "People with attention limitations, short term memory limitations, or limitations in executive processes benefit by being able to more easily discover where the focus is located."
+  ],
+  "focus-appearance": [
+    "This success criterion helps anyone who relies on the keyboard to operate the page, by letting them visually determine the component on which keyboard operations will interact at any point in time.",
+    "People with attention limitations, short term memory limitations, or limitations in executive processes benefit by being able to discover where the focus is located."
+  ],
+  "target-size-enhanced": [
+    "Users who use a mobile device where touch screen is the primary mode of interaction",
+    "Users with mobility impairments, such as hand tremors",
+    "Users who use a mobile device in environments where they are exposed to shaking such as public transportation",
+    "Users who find fine motor movements difficult",
+    "Users who access a device using one hand",
+    "Users with large fingers, or who are operating the device with only a part of their finger or knuckle",
+    "Users who have low vision may better see the target"
+  ],
+  "dragging-movements": [
+    "Users who struggle with performing dragging movements can still operate an interface with a pointer interface."
+  ],
+  "target-size-minimum": [
+    "People who use a mobile device where the touch screen is the primary mode of interaction;",
+    "People using mouse, stylus or touch input who have mobility impairments such as hand tremors;",
+    "People using a device in environments where they are exposed to shaking such as public transportation;",
+    "Mouse users who have difficulty with fine motor movements;",
+    "People who access a device using one hand;",
+    "People with large fingers, or who are operating the device with only a part of their finger or knuckle."
+  ],
+  "consistent-help": [
+    "People who may have difficulty locating help are more likely to find it when it is consistently located."
+  ],
+  "redundant-entry": [
+    "Users with cognitive disabilities experience short-term, working memory difficulty. Not having to repeatedly remember particular information reduces stress and the likelihood of mistakes.",
+    "Users who experience difficulty forming new memories, recalling information, and other functions related to cognition can complete processes without having to unnecessarily rely on their memory.",
+    "Users with mobility impairments, for example using switch control or voice input, benefit from a reduced need for text entry."
+  ],
+  "accessible-authentication-minimum": [],
+  "accessible-authentication-enhanced": []
+}
