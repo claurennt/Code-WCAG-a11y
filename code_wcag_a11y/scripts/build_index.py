@@ -1,16 +1,14 @@
 import json
-import shutil
 from pathlib import Path
 
-from huggingface_hub import Collection
-
 from code_wcag_a11y.globals import CHROMADB_WCAG_PATH, PROCESSED_DIR
+from code_wcag_a11y.scripts.types.chunk_types import WcagVersion
 from code_wcag_a11y.scripts.utils.cli_utils import setup_delete_parser
 from code_wcag_a11y.utils.logger import logger
 from code_wcag_a11y.scripts.chromadb import get_collection
 
 
-def index_wcag_files(file_path: Path, collection: Collection) -> None:
+def index_wcag_files(file_path: Path, wcag_version: WcagVersion) -> None:
     """Index WCAG JSON chunks into ChromaDB.
 
     Args:
@@ -62,7 +60,7 @@ def index_wcag_files(file_path: Path, collection: Collection) -> None:
         logger.warning(f"⚠️ No valid chunks found in {file_path}")
         return
 
-    collection = get_collection()
+    collection = get_collection(wcag_version)
     collection.add(ids=ids, documents=documents, metadatas=metadatas)
 
     logger.info(f"✅ Success: Indexed {len(documents)} chunks from {file_path.name}.")
@@ -80,7 +78,9 @@ def delete_chroma_db() -> bool:
 
     logger.info(f"🧹 Deleting Chroma DB at {CHROMADB_WCAG_PATH}")
     try:
-        shutil.rmtree(CHROMADB_WCAG_PATH)
+        import shutil
+
+        shutil.rmtree(CHROMADB_WCAG_PATH, ignore_errors=True)
         logger.info("✅ Deleted existing indices.")
         return True
     except OSError as e:
@@ -101,7 +101,6 @@ if __name__ == "__main__":
         data_file = Path(PROCESSED_DIR) / f"wcag-{version}_preprocessed.json"
         logger.info(f"--- Indexing WCAG {version} from {data_file} ---")
         try:
-            collection = get_collection()
-            index_wcag_files(data_file, collection)
+            index_wcag_files(data_file, version)
         except (FileNotFoundError, json.JSONDecodeError) as e:
             logger.error(f"❌ Failed to index WCAG {version}: {e}")

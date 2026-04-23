@@ -1,4 +1,4 @@
-from typing import NotRequired, TypedDict
+from typing import Any, Dict, NotRequired, TypedDict
 from typing_extensions import Literal
 
 
@@ -56,3 +56,10 @@ class TermChunk(BaseData, total=True):
     definition: str
     level: str
     full_context: str
+
+
+class SearchResult(TypedDict):
+    id: str
+    content: str
+    metadata: Dict[str, Any]
+    distance: float

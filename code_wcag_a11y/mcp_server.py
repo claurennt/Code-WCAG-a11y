@@ -14,19 +14,13 @@ from code_wcag_a11y.utils.clean_code import (
 from code_wcag_a11y.utils.logger import logger
 from playwright.async_api import async_playwright
 
-# from llama_index.core.vector_stores import (
-#     MetadataFilters,
-#     ExactMatchFilter,
-# )
-# from langchain import OpenAI
-# from langchain.embeddings import OpenAIEmbeddings
+
 import os
 
 
 import random
 import os
 
-os.environ["COHERE_API_KEY"] = "8jYsb9xoOxQpLjxiMum44fVajK3E18yuDzv2QDJO"
 
 from mcp.server.fastmcp import FastMCP
 
